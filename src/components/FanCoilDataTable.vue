@@ -52,11 +52,13 @@
                 class="elevation-1"
                 show-group-by
                 multi-sort
+                :loading="loading"
+                loading-text="Carregando... Por favor aguarde"
                 >
                     <template v-slot:expanded-item="{ headers }">
                         <td :colspan="headers.length">
                             <v-img
-                            src="../assets/fancoils/base-avatar.jpg"
+                            src="../assets/ar-condicionado/agua-gelada/fancoils/base-avatar.jpg"
                             max-width="300"
                             contain
                             eager
@@ -147,9 +149,11 @@ export default {
     },
     methods: {
         logTable() {
+            this.loading = true;
             axios.get(`${this.apiURL}/equipamentos/fancoils`)
             .then(response => {this.fancoils = response.data})
             .catch(error => {console.log("Error"); console.log(error);});
+            this.loading = false;
         },
         openAddItem() {
             this.dialogAdd = true;
@@ -162,7 +166,7 @@ export default {
             axios.delete(`${this.apiURL}/equipamentos/fancoils/${this.fancoilToDelete}`)
             .then(response => {console.log("Success"); console.log(response); this.logTable(); this.$emit('itemCRUD', 'removido');})
             .catch(error => {console.log("Error"); console.log(error); this.$emit('itemCRUDError', 'remover');});
-            this.closeDelete()
+            this.closeDelete();
         },
         closeDelete() {
             this.fancoilToDelete = null;

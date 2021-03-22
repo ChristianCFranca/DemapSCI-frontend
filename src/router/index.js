@@ -12,7 +12,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/equipamentos/fancoils',
+    path: '/ar-condicionado/agua-gelada/fancoils',
     name: 'fancoils',
     component: FanCoils
   }
