@@ -142,14 +142,14 @@ export default {
                                 },
             currentFancoil: null,
             // apiURL: 'http://localhost:80',
-            apiURL: 'https://demap-sci-backend.herokuapp.com'
+            apiURL: process.env.BE_API_URL ? process.env.BE_API_URL : '//demap-sci-backend.herokuapp.com'
         };
     },
     methods: {
         logTable() {
             this.loading = true;
             axios.get(`${this.apiURL}/equipamentos/fancoils`)
-            .then(response => {console.log(response); this.fancoils = response.data; this.loading = false})
+            .then(response => {this.fancoils = response.data; this.loading = false})
             .catch(error => {console.log(error); this.loading = false; this.$emit('itemCRUDError', error.response);});
         },
         openAddItem() {
