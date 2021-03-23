@@ -142,7 +142,7 @@ export default {
                                 },
             currentFancoil: null,
             // apiURL: 'http://localhost:80',
-            apiURL: process.env.BE_API_URL ? process.env.BE_API_URL : '//demap-sci-backend.herokuapp.com'
+            apiURL: 'https://demap-sci-backend.herokuapp.com:443'
         };
     },
     methods: {
