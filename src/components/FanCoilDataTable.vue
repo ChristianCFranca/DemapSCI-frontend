@@ -47,15 +47,13 @@
                 :items="fancoils"
                 :search="search"
                 :items-per-page="15"
-                :expanded.sync="expanded"
-                show-expand
                 class="elevation-1"
                 show-group-by
                 multi-sort
                 :loading="loading"
                 loading-text="Carregando... Por favor aguarde"
                 >
-                    <template v-slot:expanded-item="{ headers }">
+                    <!-- <template v-slot:expanded-item="{ headers }">
                         <td :colspan="headers.length">
                             <v-img
                             src="../assets/ar-condicionado/agua-gelada/fancoils/base-avatar.jpg"
@@ -67,7 +65,7 @@
                             </v-img>
                         </td>
                         
-                    </template>
+                    </template> -->
 
                     <template v-slot:[`item.actions`]="{ item }">
                         <v-icon small class="mr-2" @click="editItem(item)">mdi-pencil</v-icon>
@@ -75,7 +73,7 @@
                     </template>
 
                     <template v-slot:no-data>
-                        <v-btn text color="primary" @click="logTable()">Recarregar Tabela</v-btn>
+                        <h1 class="font-weight-light">Nenhum dado disponível.</h1> <v-icon large class="mb-2">mdi-emoticon-sad-outline</v-icon>
                     </template>
                 
                 </v-data-table>
@@ -151,8 +149,8 @@ export default {
         logTable() {
             this.loading = true;
             axios.get(`${this.apiURL}/equipamentos/fancoils`)
-            .then(response => {this.fancoils = response.data; this.loading = false})
-            .catch(error => {console.log("Error"); console.log(error); this.loading = false});
+            .then(response => {console.log(response); this.fancoils = response.data; this.loading = false})
+            .catch(error => {console.log(error); this.loading = false; this.$emit('itemCRUDError', error.response);});
         },
         openAddItem() {
             this.dialogAdd = true;
@@ -163,8 +161,8 @@ export default {
         },
         deleteItemConfirm () {
             axios.delete(`${this.apiURL}/equipamentos/fancoils/${this.fancoilToDelete}`)
-            .then(response => {console.log("Success"); console.log(response); this.logTable(); this.$emit('itemCRUD', 'removido');})
-            .catch(error => {console.log("Error"); console.log(error); this.$emit('itemCRUDError', 'remover');});
+            .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'removido');})
+            .catch(error => {console.log(error); this.$emit('itemCRUDError', error.response);});
             this.closeDelete();
         },
         closeDelete() {
@@ -177,13 +175,13 @@ export default {
         createItem(newFancoil) {
             axios.post(`${this.apiURL}/equipamentos/fancoils/`, newFancoil)
             .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'adicionado');})
-            .catch(error => {console.log(error); this.logTable(); this.$emit('itemCRUDError', 'adicionar');});
+            .catch(error => {console.log(error); this.logTable(); this.$emit('itemCRUDError', error.response);});
             this.closeDelete()
         },
         updateItem(newFancoil) {
             axios.put(`${this.apiURL}/equipamentos/fancoils/${newFancoil.id}`, newFancoil)
             .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'atualizado');})
-            .catch(error => {console.log(error);  this.logTable(); this.$emit('itemCRUDError', 'atualizar');});
+            .catch(error => {console.log(error);  this.logTable(); this.$emit('itemCRUDError', error.response);});
             this.closeUpdate()
         },
         editItem(fancoil) {
