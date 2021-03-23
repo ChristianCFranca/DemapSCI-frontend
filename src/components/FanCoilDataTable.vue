@@ -151,9 +151,8 @@ export default {
         logTable() {
             this.loading = true;
             axios.get(`${this.apiURL}/equipamentos/fancoils`)
-            .then(response => {this.fancoils = response.data})
-            .catch(error => {console.log("Error"); console.log(error);});
-            this.loading = false;
+            .then(response => {this.fancoils = response.data; this.loading = false})
+            .catch(error => {console.log("Error"); console.log(error); this.loading = false});
         },
         openAddItem() {
             this.dialogAdd = true;
