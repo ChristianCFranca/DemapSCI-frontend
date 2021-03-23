@@ -5,7 +5,7 @@
           <v-expansion-panels accordion flat>
             <v-expansion-panel v-for="sistema in sistemas" :key="sistema.name" class="grey lighten-3">
               <v-expansion-panel-header class="text-center">
-                <h1 class="subtitle-5 grey--text font-weight-light mt-4">{{ sistema.name }}</h1>
+                <h1 class="subtitle-5 grey--text text--darken-2 font-weight-regular mt-4"><v-icon>{{ sistema.icon }}</v-icon> {{ sistema.name }}</h1>
               </v-expansion-panel-header>
               <v-divider></v-divider>
               <v-expansion-panel-content>
@@ -63,6 +63,7 @@ export default {
       sistemas: [
         {
           name: "Ar Condicionado", 
+          icon: "mdi-air-conditioner",
           tipos: [
             {name: "Água Gelada", equipamentos: [
               {name: "Chillers", route: "/ar-condicionado/agua-gelada/chillers", avatar: require(`../assets/ar-condicionado/agua-gelada/chillers/base-avatar.jpg`)}, 
@@ -86,6 +87,7 @@ export default {
         },
         {
           name: "Ventilação",
+          icon: "mdi-fan",
           tipos: [
             {name: "Equipamentos", route: "", equipamentos: [
               {name: "Ventiladores", route: "/ventilacao/ventiladores", avatar: require(`../assets/ventilacao/ventiladores/base-avatar.jpg`)}, 
@@ -96,6 +98,7 @@ export default {
         },
         {
           name: "Energia",
+          icon: "mdi-lightning-bolt",
           tipos: [
             {name: "Equipamentos", route: "", equipamentos: [
               {name: "Geradores", route: "/energia/geradores", avatar: require(`../assets/energia/geradores/base-avatar.jpg`)}, 
@@ -110,6 +113,7 @@ export default {
         },
         {
           name: "Detecção e Alarme de Incêndio", 
+          icon: "mdi-fire",
           tipos: [
             {name: "Equipamentos", route: "", equipamentos: [
               {name: "Centrais de Alarme", route: "/incendio/centrais-alarme", avatar: require(`../assets/incendio/centrais-alarme/base-avatar.jpg`)}, 
@@ -121,6 +125,7 @@ export default {
         },
         {
           name: "Instalações Prediais",
+          icon: "mdi-office-building",
           tipos: [
             {name: "Instalações", route: "", equipamentos: [
               {name: "Iluminação", route: "/instalacoes-prediais/iluminacao", avatar: require(`../assets/instalacoes-prediais/iluminacao/base-avatar.jpg`)}, 
