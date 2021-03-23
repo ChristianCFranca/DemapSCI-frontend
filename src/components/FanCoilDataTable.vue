@@ -173,10 +173,10 @@ export default {
             this.dialogDelete = false;
         },
         createItem(newFancoil) {
-            axios.post(`${this.apiURL}/equipamentos/fancoils/`, newFancoil)
+            axios.post(`${this.apiURL}/equipamentos/fancoils`, newFancoil)
             .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'adicionado');})
-            .catch(error => {console.log(error); this.logTable(); this.$emit('itemCRUDError', error.response);});
-            this.closeDelete()
+            .catch(error => {console.log(error);  this.logTable(); this.$emit('itemCRUDError', error.response);});
+            this.closeUpdate()
         },
         updateItem(newFancoil) {
             axios.put(`${this.apiURL}/equipamentos/fancoils/${newFancoil.id}`, newFancoil)
