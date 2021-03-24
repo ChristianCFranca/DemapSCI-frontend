@@ -1,8 +1,8 @@
 <template>
-  <v-app>
-    <NavBar/>
-    <v-main class="grey lighten-4">
-      <router-view></router-view>
+  <v-app class="grey lighten-4">
+    <NavBar @EquipamentosTrue="equipamentos = true" @EquipamentosFalse="equipamentos = false"/>
+    <v-main>
+      <router-view :equipamentos="equipamentos"></router-view>
     </v-main>
   </v-app>
 </template>
@@ -18,7 +18,7 @@ export default {
   },
 
   data: () => ({
-    //
+    equipamentos: true
   }),
 };
 </script>
