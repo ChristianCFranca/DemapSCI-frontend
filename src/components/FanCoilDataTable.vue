@@ -123,6 +123,7 @@ export default {
                                 "pavimento": null,
                                 "torre": null,
                                 "modelo": null,
+                                "fabricante": null,
                                 "vazao": null,
                                 "tensao": null,
                                 "filtro": null,

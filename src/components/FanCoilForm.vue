@@ -65,6 +65,22 @@
                             md="3">
 
                             <v-text-field
+                                label="Fabricante"
+                                hint="Exemplo: Jonhson Controls"
+                                v-model="inputData.fabricante"
+                                :counter="50"
+                                clearable
+                            ></v-text-field>
+
+                        </v-col>
+                        
+
+                        <v-col
+                            cols="12"
+                            sm="3"
+                            md="3">
+
+                            <v-text-field
                                 label="Modelo do Equipamento"
                                 hint="Exemplo: Comfort YG 10"
                                 v-model="inputData.modelo"
@@ -77,8 +93,8 @@
 
                         <v-col
                             cols="12"
-                            sm="3"
-                            md="3">
+                            sm="2"
+                            md="2">
 
                             <v-text-field
                                 label="Vazão (m³/h)"
@@ -93,8 +109,8 @@
 
                         <v-col
                             cols="12"
-                            sm="3"
-                            md="3">
+                            sm="2"
+                            md="2">
 
                             <v-select
                                 :items="[220, 380]"
@@ -111,6 +127,21 @@
                             cols="12"
                             sm="3"
                             md="3">
+
+                            <v-select
+                                :items="['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)']"
+                                label="Tipo de Energia"
+                                v-model="inputData.tipoEnergia"
+                                clearable
+                            ></v-select>
+
+                        </v-col>
+
+
+                        <v-col
+                            cols="12"
+                            sm="2"
+                            md="2">
 
                             <v-text-field
                                 label="Carga Térmica (TR)"
@@ -188,21 +219,6 @@
 
                         <v-col
                             cols="12"
-                            sm="2"
-                            md="2">
-
-                            <v-select
-                                :items="['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)']"
-                                label="Tipo de Energia"
-                                v-model="inputData.tipoEnergia"
-                                clearable
-                            ></v-select>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
                             sm="3"
                             md="3">
 
@@ -221,7 +237,7 @@
                         <v-col
                             cols="12"
                             sm="2"
-                            md="3">
+                            md="2">
 
                             <v-text-field
                                 label="Tipo de Polia"
@@ -469,7 +485,7 @@ export default {
             pavimentoRules: [v => !!v || "Campo obrigatório."],
             torreRules: [v => !!v || "Campo obrigatório."],
             posNumberRules: [v => (!isNaN(v) && v > 0 || !v) || "Necessita ser um número positivo."],
-            pavimentos: ["21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "P", "1SS", "2SS", "3SS", "4SS", "5SS"],
+            pavimentos: ["21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "P", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
             torre: ["1", "2", "3", "4"],
         }
     },
