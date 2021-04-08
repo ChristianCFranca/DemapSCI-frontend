@@ -50,22 +50,21 @@
                 class="elevation-1"
                 show-group-by
                 multi-sort
+                show-expand
                 :loading="loading"
                 loading-text="Carregando... Por favor aguarde"
                 >
-                    <!-- <template v-slot:expanded-item="{ headers }">
+                    <template v-slot:expanded-item="{ headers, item }">
                         <td :colspan="headers.length">
-                            <v-img
-                            src="../assets/ar-condicionado/agua-gelada/fancoils/base-avatar.jpg"
-                            max-width="300"
-                            contain
-                            eager
-                            class="ma-3 rounded-xl"
-                            position="left">
-                            </v-img>
+                            <v-container>
+                                <v-col v-for="(value, key) in item" :key="key">
+                                    <span v-if="key != 'id'">
+                                        <span class="font-weight-light" v-if="key != 'id'"> {{ fancoilDescription[key] }} </span> : {{ value }}
+                                    </span>
+                                </v-col>
+                            </v-container>
                         </td>
-                        
-                    </template> -->
+                    </template>
 
                     <template v-slot:[`item.actions`]="{ item }">
                         <v-icon small class="mr-2" @click="editItem(item)">mdi-pencil</v-icon>
@@ -141,15 +140,37 @@ export default {
                                 "dataInstalacao": null,
                                 "infAdicional": null
                                 },
+            fancoilDescription: {"tag": "Tag",
+                                "pavimento": "Pavimento",
+                                "torre": "Torre",
+                                "modelo": "Modelo",
+                                "fabricante": "Fabricante",
+                                "vazao": "Vazão (m³/h)",
+                                "tensao": "Tensão (Volts)",
+                                "filtro": "Filtro",
+                                "cargaTermica": "Carga Térmica (TR)",
+                                "pressaoEstaticaDisponivel": "Pressão Estática Disponível (mmca)",
+                                "tipoVentilador": "Tipo do Ventilador",
+                                "modeloVentilador": "Modelo do Ventilador",
+                                "potenciaMotor": "Potência do Motor (CV)",
+                                "tipoEnergia": "Tipo de Energia",
+                                "polia": "Tipo de Polia",
+                                "largura": "Largura (mm)",
+                                "altura": "Altura (mm)",
+                                "comprimento": "Comprimento (mm)",
+                                "dataFabricacao": "Data de Fabricação",
+                                "dataInstalacao": "Data de Instalação",
+                                "infAdicional": "Informações Adicionais"
+                                },
             currentFancoil: null,
             // apiURL: 'http://localhost:80',
-            apiURL: '//demap-sci-backend.herokuapp.com/ar-condicionado/fancoils'
+            apiURL: '//demap-sci-backend.herokuapp.com'
         };
     },
     methods: {
         logTable() {
             this.loading = true;
-            axios.get(`${this.apiURL}`)
+            axios.get(`${this.apiURL}/ar-condicionado/fancoils`)
             .then(response => {this.fancoils = response.data; this.loading = false})
             .catch(error => {console.log(error); this.loading = false; this.$emit('itemCRUDError', error.response);});
         },
@@ -161,7 +182,7 @@ export default {
             this.dialogDelete = true;
         },
         deleteItemConfirm () {
-            axios.delete(`${this.apiURL}/${this.fancoilToDelete}`)
+            axios.delete(`${this.apiURL}/ar-condicionado/fancoils/${this.fancoilToDelete}`)
             .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'removido');})
             .catch(error => {console.log(error); this.$emit('itemCRUDError', error.response);});
             this.closeDelete();
@@ -174,13 +195,13 @@ export default {
             this.dialogDelete = false;
         },
         createItem(newFancoil) {
-            axios.post(`${this.apiURL}`, newFancoil)
+            axios.post(`${this.apiURL}/ar-condicionado/fancoils`, newFancoil)
             .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'adicionado');})
             .catch(error => {console.log(error);  this.logTable(); this.$emit('itemCRUDError', error.response);});
             this.closeUpdate()
         },
         updateItem(newFancoil) {
-            axios.put(`${this.apiURL}/${newFancoil.id}`, newFancoil)
+            axios.put(`${this.apiURL}/ar-condicionado/fancoils/${newFancoil.id}`, newFancoil)
             .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'atualizado');})
             .catch(error => {console.log(error);  this.logTable(); this.$emit('itemCRUDError', error.response);});
             this.closeUpdate()
