@@ -164,13 +164,13 @@ export default {
                                 },
             currentFancoil: null,
             // apiURL: 'http://localhost:80',
-            apiURL: 'https://demap-sci-backend.herokuapp.com'
+            apiURL: '//demap-sci-backend.herokuapp.com'
         };
     },
     methods: {
         logTable() {
             this.loading = true;
-            axios.get(`${this.apiURL}/ar-condicionado/fancoils`)
+            axios.get(`${this.apiURL}/ar-condicionado/fancoils/`)
             .then(response => {this.fancoils = response.data; this.loading = false})
             .catch(error => {console.log(error); this.loading = false; this.$emit('itemCRUDError', error.response);});
         },
@@ -195,7 +195,7 @@ export default {
             this.dialogDelete = false;
         },
         createItem(newFancoil) {
-            axios.post(`${this.apiURL}/ar-condicionado/fancoils`, newFancoil)
+            axios.post(`${this.apiURL}/ar-condicionado/fancoils/`, newFancoil)
             .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'adicionado');})
             .catch(error => {console.log(error);  this.logTable(); this.$emit('itemCRUDError', error.response);});
             this.closeUpdate()
