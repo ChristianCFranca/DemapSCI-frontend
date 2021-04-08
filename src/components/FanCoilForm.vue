@@ -64,13 +64,18 @@
                             sm="3"
                             md="3">
 
-                            <v-text-field
+                            <v-combobox
                                 label="Fabricante"
                                 hint="Exemplo: Johnson Controls"
+                                :items="fabricantesList"
+                                :loading="isFabricantesLoading"
+                                @click="searchFabricantes()"
+                                hide-no-data
+                                hide-selected
                                 v-model="inputData.fabricante"
                                 :counter="50"
                                 clearable
-                            ></v-text-field>
+                            ></v-combobox>
 
                         </v-col>
 
@@ -408,6 +413,7 @@
                             <v-textarea
                                 label="Informações Adicionais"
                                 v-model="inputData.infAdicional"
+                                :counter="200"
                                 clearable
                                 auto-grow
                             ></v-textarea>
@@ -487,6 +493,8 @@ export default {
             posNumberRules: [v => (!isNaN(v) && v > 0 || !v) || "Necessita ser um número positivo."],
             pavimentos: ["21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "P", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
             torre: ["1", "2", "3", "4"],
+            isFabricantesLoading: false,
+            fabricantesList: []
         }
     },
     methods: {
@@ -504,17 +512,48 @@ export default {
             }
             this.CloseForm();
         },
-        resetForm(){
+        resetForm() {
             this.$refs.form.reset();
         },
+        resetAutoCompletes() {
+            this.fabricantesList = [];
+        },
         CloseForm() {
-            this.inputData = {...this.cloneInputData};
+            // this.inputData = {...this.cloneInputData};
+            this.resetAutoCompletes();
             this.$emit("closeAddForm");
         },
+        getUniqueKeys(json, key) {
+            const values = [... new Set(json.map(item => item[key]))]
+            return values
+        },
+        searchFabricantes () {
+            // Items have already been loaded
+            if (this.fabricantesList.length > 0) return
+
+            // Items have already been requested
+            if (this.isFabricantesLoading) return
+
+            this.isFabricantesLoading = true
+
+            // Lazily load input items
+            fetch('//demap-sci-backend.herokuapp.com/ar-condicionado/fancoils/')
+            .then(res => res.json()) // {"id": 0, "pavimento": "21", torre: "4", "modelo": 51242, "vazao": 3220, ...}
+            .then(res => {
+                this.fabricantesList = this.getUniqueKeys(res, "fabricante")
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            .finally(() => (this.isFabricantesLoading = false))
+        }
     },
     props: {
         inputData: Object,
         empty: Boolean
+    },
+    watch: {
+        
     }
 
 }

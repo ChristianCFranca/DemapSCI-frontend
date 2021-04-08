@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-container>
+        <v-card class="ma-4">
             <v-card>
 
                 <v-card-title>
@@ -56,13 +56,11 @@
                 >
                     <template v-slot:expanded-item="{ headers, item }">
                         <td :colspan="headers.length">
-                            <v-container>
                                 <v-col v-for="(value, key) in item" :key="key">
                                     <span v-if="key != 'id'">
                                         <span class="font-weight-light" v-if="key != 'id'"> {{ fancoilDescription[key] }} </span> : {{ value }}
                                     </span>
                                 </v-col>
-                            </v-container>
                         </td>
                     </template>
 
@@ -78,7 +76,7 @@
                 </v-data-table>
 
             </v-card>
-        </v-container>
+        </v-card>
     </div>
 </template>
 
@@ -115,7 +113,7 @@ export default {
                 { text: "Capacidade Térmica (TR)", value: "cargaTermica" },
                 { text: "Pressão Estática (mmca)", value: "pressaoEstaticaDisponivel" },
                 { text: "Tipo de Ventilador", value: "tipoVentilador" },
-                { text: 'Actions', value: 'actions', sortable: false, groupable: false }
+                { text: 'Ações', value: 'actions', sortable: false, groupable: false }
             ],
             fancoils: [],
             fancoilBlueprint: {"tag": null,
@@ -171,7 +169,7 @@ export default {
         logTable() {
             this.loading = true;
             axios.get(`${this.apiURL}/ar-condicionado/fancoils/`)
-            .then(response => {this.fancoils = response.data; this.loading = false})
+            .then(response => {this.fancoils = response.data; this.loading = false; return response})
             .catch(error => {console.log(error); this.loading = false; this.$emit('itemCRUDError', error.response);});
         },
         openAddItem() {
@@ -183,7 +181,7 @@ export default {
         },
         deleteItemConfirm () {
             axios.delete(`${this.apiURL}/ar-condicionado/fancoils/${this.fancoilToDelete}`)
-            .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'removido');})
+            .then(response => {this.logTable(); this.$emit('itemCRUD', 'removido'); return response})
             .catch(error => {console.log(error); this.$emit('itemCRUDError', error.response);});
             this.closeDelete();
         },
@@ -196,13 +194,13 @@ export default {
         },
         createItem(newFancoil) {
             axios.post(`${this.apiURL}/ar-condicionado/fancoils/`, newFancoil)
-            .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'adicionado');})
+            .then(response => {this.logTable(); this.$emit('itemCRUD', 'adicionado'); return response})
             .catch(error => {console.log(error);  this.logTable(); this.$emit('itemCRUDError', error.response);});
             this.closeUpdate()
         },
         updateItem(newFancoil) {
             axios.put(`${this.apiURL}/ar-condicionado/fancoils/${newFancoil.id}`, newFancoil)
-            .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'atualizado');})
+            .then(response => {this.logTable(); this.$emit('itemCRUD', 'atualizado'); return response})
             .catch(error => {console.log(error);  this.logTable(); this.$emit('itemCRUDError', error.response);});
             this.closeUpdate()
         },
