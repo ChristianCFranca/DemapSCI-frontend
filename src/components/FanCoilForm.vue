@@ -66,14 +66,14 @@
 
                             <v-text-field
                                 label="Fabricante"
-                                hint="Exemplo: Jonhson Controls"
+                                hint="Exemplo: Johnson Controls"
                                 v-model="inputData.fabricante"
                                 :counter="50"
                                 clearable
                             ></v-text-field>
 
                         </v-col>
-                        
+
 
                         <v-col
                             cols="12"

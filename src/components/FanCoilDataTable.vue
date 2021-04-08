@@ -143,13 +143,13 @@ export default {
                                 },
             currentFancoil: null,
             // apiURL: 'http://localhost:80',
-            apiURL: '//demap-sci-backend.herokuapp.com'
+            apiURL: '//demap-sci-backend.herokuapp.com/ar-condicionado/fancoils'
         };
     },
     methods: {
         logTable() {
             this.loading = true;
-            axios.get(`${this.apiURL}/equipamentos/fancoils`)
+            axios.get(`${this.apiURL}`)
             .then(response => {this.fancoils = response.data; this.loading = false})
             .catch(error => {console.log(error); this.loading = false; this.$emit('itemCRUDError', error.response);});
         },
@@ -161,7 +161,7 @@ export default {
             this.dialogDelete = true;
         },
         deleteItemConfirm () {
-            axios.delete(`${this.apiURL}/equipamentos/fancoils/${this.fancoilToDelete}`)
+            axios.delete(`${this.apiURL}/${this.fancoilToDelete}`)
             .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'removido');})
             .catch(error => {console.log(error); this.$emit('itemCRUDError', error.response);});
             this.closeDelete();
@@ -174,13 +174,13 @@ export default {
             this.dialogDelete = false;
         },
         createItem(newFancoil) {
-            axios.post(`${this.apiURL}/equipamentos/fancoils`, newFancoil)
+            axios.post(`${this.apiURL}`, newFancoil)
             .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'adicionado');})
             .catch(error => {console.log(error);  this.logTable(); this.$emit('itemCRUDError', error.response);});
             this.closeUpdate()
         },
         updateItem(newFancoil) {
-            axios.put(`${this.apiURL}/equipamentos/fancoils/${newFancoil.id}`, newFancoil)
+            axios.put(`${this.apiURL}/${newFancoil.id}`, newFancoil)
             .then(response => {console.log(response); this.logTable(); this.$emit('itemCRUD', 'atualizado');})
             .catch(error => {console.log(error);  this.logTable(); this.$emit('itemCRUDError', error.response);});
             this.closeUpdate()
