@@ -24,6 +24,6 @@ npm run serve
 npm run build
 ```
 
-4 - Acessar endereço fornecido pelo serviço (geralmente http://localhsot:8080/).
+4 - Acessar endereço fornecido pelo serviço (geralmente http://localhost:8080/).
 
 5 - Tudo pronto!
