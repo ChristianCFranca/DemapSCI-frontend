@@ -491,7 +491,7 @@ export default {
             pavimentoRules: [v => !!v || "Campo obrigatório."],
             torreRules: [v => !!v || "Campo obrigatório."],
             posNumberRules: [v => (!isNaN(v) && v > 0 || !v) || "Necessita ser um número positivo."],
-            pavimentos: ["21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "P", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
+            pavimentos: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "P", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
             torre: ["1", "2", "3", "4"],
             isFabricantesLoading: false,
             fabricantesList: []
