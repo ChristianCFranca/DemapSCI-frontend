@@ -22,11 +22,11 @@
                 </v-card-title>
 
                 <v-dialog v-model="dialogAdd" scrollable>
-                    <FanCoilForm :inputData="fancoilBlueprint" :empty="true" @closeAddForm="dialogAdd = false" @newFormValid="createItem"/>
+                    <FanCoilForm :inputData="fancoilBlueprint" :empty="true" :apiURL="apiURL" @closeAddForm="dialogAdd = false" @newFormValid="createItem"/>
                 </v-dialog>
 
                 <v-dialog v-model="dialogEdit" scrollable>
-                    <FanCoilForm :inputData="currentFancoil" :empty="false" @closeAddForm="dialogEdit = false" @newFormUpdate="updateItem"/>
+                    <FanCoilForm :inputData="currentFancoil" :empty="false" :apiURL="apiURL" @closeAddForm="dialogEdit = false" @newFormUpdate="updateItem"/>
                 </v-dialog>
 
                 <v-dialog v-model="dialogDelete" max-width="510px">

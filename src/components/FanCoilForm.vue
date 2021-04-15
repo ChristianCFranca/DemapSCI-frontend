@@ -537,7 +537,7 @@ export default {
             this.isFabricantesLoading = true
 
             // Lazily load input items
-            fetch('//demap-sci-backend.herokuapp.com/ar-condicionado/fancoils/')
+            fetch(`${this.apiURL}/ar-condicionado/fancoils/`)
             .then(res => res.json()) // {"id": 0, "pavimento": "21", torre: "4", "modelo": 51242, "vazao": 3220, ...}
             .then(res => {
                 this.fabricantesList = this.getUniqueKeys(res, "fabricante")
@@ -550,7 +550,8 @@ export default {
     },
     props: {
         inputData: Object,
-        empty: Boolean
+        empty: Boolean,
+        apiURL: String
     },
     watch: {
         
