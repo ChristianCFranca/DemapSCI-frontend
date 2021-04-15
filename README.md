@@ -1,9 +1,7 @@
 # DemapSCI-frontend
 Implementação do front-end do Sistema de cadastro de infraestrutura não oficial do Departamento de Infraestrutura e Gestão Patrimonial do Banco Central do Brasil. O sistema é construído utilizando o framework [Vue.js](https://vuejs.org/) e a biblioteca de componentes [Vuetify](https://vuetifyjs.com/en/).
 
-![Vue.js + vuetify](https://i.morioh.com/2019/11/01/47e709b4198f.jpg)
-
-O serviço já está disponível utilizando a plataforma [Heroku](https://dashboard.heroku.com/) na URL https://demap-sci-frontend.herokuapp.com/. 
+![Vue.js + vuetify](https://i.morioh.com/2019/11/01/47e709b4198f.jpg) 
 
 ## Instalação e Execução
 
