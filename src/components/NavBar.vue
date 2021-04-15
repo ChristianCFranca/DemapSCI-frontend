@@ -12,7 +12,7 @@
             ></v-img>
         </template>
 
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon @click="logValue()"></v-app-bar-nav-icon>
 
         <v-spacer></v-spacer>
 
@@ -65,6 +65,11 @@
 export default {
     data() {
         return {
+        }
+    },
+    methods: {
+        logValue() {
+            console.log(process.env)
         }
     }
 }
