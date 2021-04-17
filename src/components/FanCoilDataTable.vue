@@ -161,7 +161,7 @@ export default {
                                 "infAdicional": "Informações Adicionais"
                                 },
             currentFancoil: null,
-            apiURL: (process.env.BACKEND_URL === undefined) ? 'http://localhost:80' : process.env.BACKEND_URL
+            apiURL: "https://demap-sci-backend.herokuapp.com/"
         };
     },
     methods: {
