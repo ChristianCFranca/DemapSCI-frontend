@@ -161,7 +161,7 @@ export default {
                                 "infAdicional": "Informações Adicionais"
                                 },
             currentFancoil: null,
-            apiURL: "https://demap-sci-backend.herokuapp.com/"
+            apiURL: "https://demap-sci-backend.herokuapp.com"
         };
     },
     methods: {
