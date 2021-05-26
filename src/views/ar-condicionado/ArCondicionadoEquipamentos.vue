@@ -36,9 +36,9 @@ export default {
           {name: "Torres de Resfriamento"}
           ]
         },
-        {tipo: "Splits e Selfs", equipamentos: [
-          {name: "Unidades Condensadoras"}, 
-          {name: "Unidades Evaporadoras"}
+        {tipo: "Expansão Direta", equipamentos: [
+          {name: "Split"}, 
+          {name: "Self"}
           ]
         },
         {tipo: "VRF", equipamentos: [

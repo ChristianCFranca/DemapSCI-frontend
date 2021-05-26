@@ -110,7 +110,7 @@ export default {
                 { text: "Modelo", value: "modelo" },
                 { text: "Potência do Motor (CV)", value: "potenciaMotor" },
                 { text: "Capacidade Térmica (TR)", value: "cargaTermica" },
-                { text: "Pressão Estática (mmca)", value: "pressaoEstaticaDisponivel" },
+                { text: "Pressão Externa (mmca)", value: "pressaoEstaticaDisponivel" },
                 { text: "Fabricante", value: "fabricante" },
                 { text: "Ações", value: "actions", sortable: false }
             ],
