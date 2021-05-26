@@ -48,7 +48,6 @@
                 :search="search"
                 :items-per-page="15"
                 class="elevation-1"
-                show-group-by
                 multi-sort
                 show-expand
                 :loading="loading"
@@ -103,17 +102,17 @@ export default {
             loading: true,
             options: {},
             headers: [
-                { text: '', value: 'data-table-expand', sortable: false, groupable: false },
-                { text: "Tag", value: "tag", sortable: false, groupable: false },
+                { text: '', value: 'data-table-expand', sortable: false },
+                { text: "Tag", value: "tag", sortable: false },
                 { text: "Pavimento", value: "pavimento" },
                 { text: "Torre", value: "torre" },
                 { text: "Vazao (m³/h)", value: "vazao" },
-                { text: "Tensão (V)", value: "tensao" },
+                { text: "Modelo", value: "modelo" },
                 { text: "Potência do Motor (CV)", value: "potenciaMotor" },
                 { text: "Capacidade Térmica (TR)", value: "cargaTermica" },
                 { text: "Pressão Estática (mmca)", value: "pressaoEstaticaDisponivel" },
-                { text: "Tipo de Ventilador", value: "tipoVentilador" },
-                { text: 'Ações', value: 'actions', sortable: false, groupable: false }
+                { text: "Fabricante", value: "fabricante" },
+                { text: "Ações", value: "actions", sortable: false }
             ],
             fancoils: [],
             fancoilBlueprint: {"tag": null,
