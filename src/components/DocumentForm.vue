@@ -6,6 +6,99 @@
             <v-form ref="form" v-model="valid">
                 <v-container>
                     <v-row>
+                        <v-col cols="12" sm="2" md="3" v-for="item in this.$store.getters.getCurrentDocumentDescriptionCleaned" :key="item.value">
+                            <v-text-field
+                                :label="item.text"
+                                v-model="inputData[`${item.value}`]"
+                                hint="Teste"
+                                :required="item.required"
+                                :rules="item.rule"
+                                :counter="50"
+                                clearable
+                                v-if="item.type === `text`"
+                            ></v-text-field>
+
+                            <v-select
+                                :items="item.dropItems"
+                                v-model="inputData[`${item.value}`]"
+                                :label="item.text"
+                                :required="item.required"
+                                :rules="item.rule"
+                                clearable
+                                v-if="item.type === `dropdown`"
+                            ></v-select>
+
+                            <v-combobox
+                                :items="item.dropItems"
+                                v-model="inputData[`${item.value}`]"
+                                :label="item.text"
+                                :required="item.required"
+                                :loading="isFabricantesLoading"
+                                hide-no-data
+                                hide-selected
+                                :counter="50"
+                                clearable
+                                v-if="item.type === `autocomplete`"
+                            ></v-combobox>
+
+                            <v-menu
+                                :ref="item.value"
+                                v-model="item.menu"
+                                :close-on-content-click="false"
+                                :return-value.sync="inputData[`${item.value}`]"
+                                transition="scale-transition"
+                                offset-y
+                                min-width="auto"
+                                v-if="item.type === `date`"
+                            >
+                                <template v-slot:activator="{ on, attrs }">
+                                <v-text-field
+                                    v-model="inputData[`${item.value}`]"
+                                    :label="item.text"
+                                    prepend-icon="mdi-calendar"
+                                    readonly
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    clearable
+                                ></v-text-field>
+                                </template>
+                                <v-date-picker
+                                v-model="inputData[`${item.value}`]"
+                                no-title
+                                scrollable
+                                >
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                    text
+                                    color="primary"
+                                    @click="item.menu = false"
+                                >
+                                    Cancelar
+                                </v-btn>
+                                <v-btn
+                                    text
+                                    color="primary"
+                                    @click="$refs[item.value][0].save(inputData[`${item.value}`])"
+                                >
+                                    OK
+                                </v-btn>
+                                </v-date-picker>
+                            </v-menu>
+
+                            <v-textarea
+                                label="Informações Adicionais"
+                                v-model="inputData.infAdicional"
+                                :counter="200"
+                                clearable
+                                auto-grow
+                                outlined
+                                v-if="item.type === `textarea`"
+                            ></v-textarea>
+
+                        </v-col>
+                    </v-row>
+
+                    <v-row>
 
                         <v-col
                             cols="12"
@@ -420,25 +513,6 @@
 
                         </v-col>
 
-
-                        <!-- <v-col
-                            cols="12"
-                            sm="4"
-                            md="4">
-
-                            <v-file-input
-                                :rules="imgRules"
-                                filled
-                                accept="image/png, image/jpeg, image/bmp"
-                                placeholder="Avatar"
-                                prepend-icon="mdi-camera"
-                                label="Carregar uma imagem"
-                                v-model="imagem"
-                            ></v-file-input>
-
-                        </v-col> -->
-
-
                     </v-row>
                 </v-container>
             </v-form>
@@ -464,6 +538,7 @@
           <v-btn
             color="blue darken-1"
             text
+            :loading="loadingSave"
             @click="saveData()"
           >
             Salvar
@@ -474,23 +549,26 @@
 </template>
 
 <script>
+import Service from '../services/Service.js'
 
 export default {
 
     data() {
         return {
+            inputData: this.$store.getters.getCurrentDocumentBlueprint,
             imagem: null,
             menu1: false,
             menu2: false,
             picker: new Date().toISOString().substr(0, 10),
             valid: false,
+            nonEmptyRules: [v => !!v || "Campo obrigatório."],
+            posNumberRules: [v => (!isNaN(v) && v > 0 || !v) || "Necessita ser um número positivo."],
             tagRules: [v => !!v || "Campo obrigatório."],
-            imgRules: [
-                v => !v || v.size < 2000000 || 'Tamanho da imagem deve ser menor que 2 MB!',
-            ],
+            // imgRules: [
+            //     v => !v || v.size < 2000000 || 'Tamanho da imagem deve ser menor que 2 MB!',
+            // ],
             pavimentoRules: [v => !!v || "Campo obrigatório."],
             torreRules: [v => !!v || "Campo obrigatório."],
-            posNumberRules: [v => (!isNaN(v) && v > 0 || !v) || "Necessita ser um número positivo."],
             pavimentos: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "P", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
             torre: ["1", "2", "3", "4"],
             isFabricantesLoading: false,
@@ -500,9 +578,8 @@ export default {
     methods: {
         saveData() {
             for (const key in this.inputData) {
-                if (this.inputData[key] === "") {
+                if (this.inputData[key] === "")
                     this.inputData[key] = null;
-                }
             }
 
             if (this.empty){
@@ -510,7 +587,6 @@ export default {
             } else {
                 this.$emit("newFormUpdate", this.inputData);
             }
-            this.CloseForm();
         },
         resetForm() {
             this.$refs.form.reset();
@@ -519,13 +595,8 @@ export default {
             this.fabricantesList = [];
         },
         CloseForm() {
-            // this.inputData = {...this.cloneInputData};
             this.resetAutoCompletes();
-            this.$emit("closeAddForm");
-        },
-        getUniqueKeys(json, key) {
-            const values = [... new Set(json.map(item => item[key]))]
-            return values
+            this.$emit("closeForm");
         },
         searchFabricantes () {
             // Items have already been loaded
@@ -536,22 +607,20 @@ export default {
 
             this.isFabricantesLoading = true
 
+            const col = "fabricante"
             // Lazily load input items
-            fetch(`${this.apiURL}/ar-condicionado/fancoils/`)
-            .then(res => res.json()) // {"id": 0, "pavimento": "21", torre: "4", "modelo": 51242, "vazao": 3220, ...}
-            .then(res => {
-                this.fabricantesList = this.getUniqueKeys(res, "fabricante")
+            Service.get(`/ar-condicionado/fancoils/unique/${col}`)
+            .then(response => {
+                console.log(response.data)
+                this.fabricantesList = response.data
             })
-            .catch(err => {
-                console.log(err)
-            })
+            .catch(err => {console.log(err)})
             .finally(() => (this.isFabricantesLoading = false))
         }
     },
     props: {
-        inputData: Object,
         empty: Boolean,
-        apiURL: String
+        loadingSave: Boolean
     },
     watch: {
         

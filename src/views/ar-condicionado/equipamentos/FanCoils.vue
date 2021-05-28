@@ -13,16 +13,16 @@
           </template>
       </v-snackbar>
 
-      <FanCoilDataTable @itemCRUD="snackbarReactSuccess" @itemCRUDError="snackbarReactError"/>
+      <DocumentDataTable @itemCRUD="snackbarReactSuccess" @itemCRUDError="snackbarReactError"/>
   </div>
 </template>
 
 <script>
-import FanCoilDataTable from "@/components/FanCoilDataTable";
+import DocumentDataTable from "@/components/DocumentDataTable";
 
 export default {
   components: {
-    FanCoilDataTable
+    DocumentDataTable
   },
   data() {
     return {
