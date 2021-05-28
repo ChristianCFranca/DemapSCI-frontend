@@ -1,43 +1,50 @@
 <template>
-    <v-card height="600px">
+    <v-card height="700px">
         <v-card-title> Adicionar Fan Coil </v-card-title>
         <v-divider></v-divider>
         <v-card-text>
             <v-form ref="form" v-model="valid">
                 <v-container>
                     <v-row>
-                        <v-col cols="12" sm="2" md="3" v-for="item in this.$store.getters.getCurrentDocumentDescriptionCleaned" :key="item.value">
+                        <v-col cols="12" xs="12" sm="6" md="3" v-for="item in this.$store.getters.getCurrentDocumentDescriptionCleaned" :key="item.value">
                             <v-text-field
                                 :label="item.text"
                                 v-model="inputData[`${item.value}`]"
-                                hint="Teste"
+                                :hint="item.hint"
                                 :required="item.required"
                                 :rules="item.rule"
                                 :counter="50"
                                 clearable
+                                outlined
                                 v-if="item.type === `text`"
                             ></v-text-field>
 
                             <v-select
                                 :items="item.dropItems"
                                 v-model="inputData[`${item.value}`]"
+                                :hint="item.hint"
                                 :label="item.text"
                                 :required="item.required"
                                 :rules="item.rule"
+                                :loading="item.loading"
                                 clearable
+                                outlined
                                 v-if="item.type === `dropdown`"
                             ></v-select>
 
                             <v-combobox
                                 :items="item.dropItems"
                                 v-model="inputData[`${item.value}`]"
+                                :hint="item.hint"
                                 :label="item.text"
                                 :required="item.required"
-                                :loading="isFabricantesLoading"
+                                :rules="item.rule"
+                                :loading="item.loading"
                                 hide-no-data
                                 hide-selected
                                 :counter="50"
                                 clearable
+                                outlined
                                 v-if="item.type === `autocomplete`"
                             ></v-combobox>
 
@@ -45,6 +52,7 @@
                                 :ref="item.value"
                                 v-model="item.menu"
                                 :close-on-content-click="false"
+                                :rules="item.rule"
                                 :return-value.sync="inputData[`${item.value}`]"
                                 transition="scale-transition"
                                 offset-y
@@ -98,422 +106,6 @@
                         </v-col>
                     </v-row>
 
-                    <v-row>
-
-                        <v-col
-                            cols="12"
-                            sm="2"
-                            md="2">
-
-                            <v-text-field
-                                label="Tag*"
-                                v-model="inputData.tag"
-                                hint="Formato Típico: 8-T04-08C"
-                                required
-                                :counter="50"
-                                :rules="tagRules"
-                                clearable
-                            ></v-text-field>
-
-                        </v-col>
-                        
-
-                        <v-col
-                            cols="12"
-                            sm="2"
-                            md="2">
-
-                            <v-select
-                                :items="pavimentos"
-                                v-model="inputData.pavimento"
-                                label="Pavimento*"
-                                required
-                                :rules="pavimentoRules"
-                                clearable
-                            ></v-select>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="2"
-                            md="2">
-
-                            <v-select
-                                :items="torre"
-                                v-model="inputData.torre"
-                                label="Torre*"
-                                required
-                                :rules="torreRules"
-                                clearable
-                            ></v-select>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="3"
-                            md="3">
-
-                            <v-combobox
-                                label="Fabricante"
-                                hint="Exemplo: Johnson Controls"
-                                :items="fabricantesList"
-                                :loading="isFabricantesLoading"
-                                @click="searchFabricantes()"
-                                hide-no-data
-                                hide-selected
-                                v-model="inputData.fabricante"
-                                :counter="50"
-                                clearable
-                            ></v-combobox>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="3"
-                            md="3">
-
-                            <v-text-field
-                                label="Modelo do Equipamento"
-                                hint="Exemplo: Comfort YG 10"
-                                v-model="inputData.modelo"
-                                :counter="50"
-                                clearable
-                            ></v-text-field>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="2"
-                            md="2">
-
-                            <v-text-field
-                                label="Vazão (m³/h)"
-                                hint="Exemplo: 6700.00"
-                                v-model="inputData.vazao"
-                                :rules="posNumberRules"
-                                clearable
-                            ></v-text-field>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="2"
-                            md="2">
-
-                            <v-select
-                                :items="[220, 380]"
-                                label="Tensão (Volts)"
-                                v-model="inputData.tensao"
-                                required
-                                clearable
-                            ></v-select>
-
-                        </v-col>
-                        
-
-                        <v-col
-                            cols="12"
-                            sm="3"
-                            md="3">
-
-                            <v-select
-                                :items="['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)']"
-                                label="Tipo de Energia"
-                                v-model="inputData.tipoEnergia"
-                                clearable
-                            ></v-select>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="2"
-                            md="2">
-
-                            <v-text-field
-                                label="Carga Térmica (TR)"
-                                hint="Exemplo: 10.2"
-                                v-model="inputData.cargaTermica"
-                                :rules="posNumberRules"
-                                clearable
-                            ></v-text-field>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="3"
-                            md="3">
-
-                            <v-text-field
-                                label="Pressão Estática Disponível (mmCA)"
-                                hint="Exemplo: 47.1"
-                                v-model="inputData.pressaoEstaticaDisponivel"
-                                :rules="posNumberRules"
-                                clearable
-                            ></v-text-field>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="3"
-                            md="3">
-
-                            <v-text-field
-                                label="Filtro"
-                                hint="Exemplo: Filtro Grosso - F5 Plissado 2''"
-                                v-model="inputData.filtro"
-                                :counter="50"
-                                clearable
-                            ></v-text-field>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="2"
-                            md="2">
-
-                            <v-text-field
-                                label="Potência do Motor (CV)"
-                                hint="Exemplo: 3.0"
-                                v-model="inputData.potenciaMotor"
-                                :rules="posNumberRules"
-                                clearable
-                            ></v-text-field>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="2"
-                            md="2">
-
-                            <v-select
-                                :items="['Centrífugo Sirocco', 'Centrífugo Limit Load', 'Axial', 'Radial']"
-                                label="Tipo do Ventilador"
-                                v-model="inputData.tipoVentilador"
-                                clearable
-                            ></v-select>
-
-                        </v-col>
-                        
-
-                        <v-col
-                            cols="12"
-                            sm="3"
-                            md="3">
-
-                            <v-text-field
-                                label="Modelo do Ventilador"
-                                hint="Exemplo: TDA-15/15-L"
-                                v-model="inputData.modeloVentilador"
-                                :counter="50"
-                                clearable
-                            ></v-text-field>
-
-                        </v-col>
-
-
-
-                        <v-col
-                            cols="12"
-                            sm="2"
-                            md="2">
-
-                            <v-text-field
-                                label="Tipo de Polia"
-                                hint="Exemplo: DX"
-                                v-model="inputData.polia"
-                                :counter="50"
-                                clearable
-                            ></v-text-field>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="4"
-                            md="4">
-
-                            <v-text-field
-                                label="Altura (mm)"
-                                hint="Exemplo: 1500"
-                                v-model="inputData.altura"
-                                :rules="posNumberRules"
-                                clearable
-                            ></v-text-field>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="4"
-                            md="4">
-
-                            <v-text-field
-                                label="Largura (mm)"
-                                hint="Exemplo: 736"
-                                v-model="inputData.largura"
-                                :rules="posNumberRules"
-                                clearable
-                            ></v-text-field>
-
-                        </v-col>
-                        
-
-                        <v-col
-                            cols="12"
-                            sm="4"
-                            md="4">
-
-                            <v-text-field
-                                label="Comprimento (mm)"
-                                hint="Exemplo: 1500"
-                                v-model="inputData.comprimento"
-                                :rules="posNumberRules"
-                                clearable
-                            ></v-text-field>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="4"
-                            md="4">
-
-                            <v-menu
-                                ref="menu1"
-                                v-model="menu1"
-                                :close-on-content-click="false"
-                                :return-value.sync="inputData.dataFabricacao"
-                                transition="scale-transition"
-                                offset-y
-                                min-width="auto"
-                            >
-                                <template v-slot:activator="{ on, attrs }">
-                                <v-text-field
-                                    v-model="inputData.dataFabricacao"
-                                    label="Data de Fabricação"
-                                    prepend-icon="mdi-calendar"
-                                    readonly
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    clearable
-                                ></v-text-field>
-                                </template>
-                                <v-date-picker
-                                v-model="inputData.dataFabricacao"
-                                no-title
-                                scrollable
-                                >
-                                <v-spacer></v-spacer>
-                                <v-btn
-                                    text
-                                    color="primary"
-                                    @click="menu1 = false"
-                                >
-                                    Cancelar
-                                </v-btn>
-                                <v-btn
-                                    text
-                                    color="primary"
-                                    @click="$refs.menu1.save(inputData.dataFabricacao)"
-                                >
-                                    OK
-                                </v-btn>
-                                </v-date-picker>
-                            </v-menu>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="4"
-                            md="4">
-
-                            <v-menu
-                                ref="menu2"
-                                v-model="menu2"
-                                :close-on-content-click="false"
-                                :return-value.sync="inputData.dataInstalacao"
-                                transition="scale-transition"
-                                offset-y
-                                min-width="auto"
-                            >
-                                <template v-slot:activator="{ on, attrs }">
-                                <v-text-field
-                                    v-model="inputData.dataInstalacao"
-                                    label="Data de Instalação"
-                                    prepend-icon="mdi-calendar"
-                                    readonly
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    clearable
-                                ></v-text-field>
-                                </template>
-                                <v-date-picker
-                                v-model="inputData.dataInstalacao"
-                                no-title
-                                scrollable
-                                >
-                                <v-spacer></v-spacer>
-                                <v-btn
-                                    text
-                                    color="primary"
-                                    @click="menu2 = false"
-                                >
-                                    Cancelar
-                                </v-btn>
-                                <v-btn
-                                    text
-                                    color="primary"
-                                    @click="$refs.menu2.save(inputData.dataInstalacao)"
-                                >
-                                    OK
-                                </v-btn>
-                                </v-date-picker>
-                            </v-menu>
-
-                        </v-col>
-
-
-                        <v-col
-                            cols="12"
-                            sm="4"
-                            md="4">
-
-                            <v-textarea
-                                label="Informações Adicionais"
-                                v-model="inputData.infAdicional"
-                                :counter="200"
-                                clearable
-                                auto-grow
-                            ></v-textarea>
-
-                        </v-col>
-
-                    </v-row>
                 </v-container>
             </v-form>
         *indica campo obrigatório
@@ -549,30 +141,17 @@
 </template>
 
 <script>
-import Service from '../services/Service.js'
+// import Service from '../services/Service.js'
 
 export default {
 
     data() {
         return {
-            inputData: this.$store.getters.getCurrentDocumentBlueprint,
-            imagem: null,
-            menu1: false,
-            menu2: false,
-            picker: new Date().toISOString().substr(0, 10),
+            // imagem: null,
             valid: false,
-            nonEmptyRules: [v => !!v || "Campo obrigatório."],
-            posNumberRules: [v => (!isNaN(v) && v > 0 || !v) || "Necessita ser um número positivo."],
-            tagRules: [v => !!v || "Campo obrigatório."],
             // imgRules: [
             //     v => !v || v.size < 2000000 || 'Tamanho da imagem deve ser menor que 2 MB!',
             // ],
-            pavimentoRules: [v => !!v || "Campo obrigatório."],
-            torreRules: [v => !!v || "Campo obrigatório."],
-            pavimentos: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "P", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
-            torre: ["1", "2", "3", "4"],
-            isFabricantesLoading: false,
-            fabricantesList: []
         }
     },
     methods: {
@@ -598,6 +177,7 @@ export default {
             this.resetAutoCompletes();
             this.$emit("closeForm");
         },
+        /*
         searchFabricantes () {
             // Items have already been loaded
             if (this.fabricantesList.length > 0) return
@@ -617,13 +197,16 @@ export default {
             .catch(err => {console.log(err)})
             .finally(() => (this.isFabricantesLoading = false))
         }
+        */
     },
     props: {
         empty: Boolean,
         loadingSave: Boolean
     },
-    watch: {
-        
+    computed: {
+        inputData() {
+            return this.$store.getters.getCurrentDocumentBlueprint
+        }
     }
 
 }

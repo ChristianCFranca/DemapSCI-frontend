@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
 import ArCondicionado from '../views/ar-condicionado/ArCondicionado.vue'
-import Fancoils from '../views/ar-condicionado/equipamentos/FanCoils.vue'
+import Documentos from '../views/ar-condicionado/equipamentos/Documentos.vue'
 import Energia from '../views/energia/Energia.vue'
 import Ventilacao from '../views/ventilacao/Ventilacao.vue'
 import Manutencao from '../views/manutencao/Manutencao.vue'
@@ -25,7 +25,42 @@ const routes = [
   {
     path: '/ar-condicionado/fancoils',
     name: 'fancoils',
-    component: Fancoils
+    component: Documentos
+  },
+  {
+    path: '/ar-condicionado/chillers',
+    name: 'chillers',
+    component: Documentos
+  },
+  {
+    path: '/ar-condicionado/torres',
+    name: 'chillers',
+    component: Documentos
+  },
+  {
+    path: '/ar-condicionado/bombas',
+    name: 'chillers',
+    component: Documentos
+  },
+  {
+    path: '/ar-condicionado/splits',
+    name: 'chillers',
+    component: Documentos
+  },
+  {
+    path: '/ar-condicionado/selfs',
+    name: 'chillers',
+    component: Documentos
+  },
+  {
+    path: '/ar-condicionado/vrfconds',
+    name: 'chillers',
+    component: Documentos
+  },
+  {
+    path: '/ar-condicionado/vrfevaps',
+    name: 'chillers',
+    component: Documentos
   },
   {
     path: '/energia',

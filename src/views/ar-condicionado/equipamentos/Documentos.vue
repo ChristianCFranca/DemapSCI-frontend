@@ -1,5 +1,5 @@
 <template>
-  <div class="fancoils">
+  <div class="documents">
       <v-snackbar v-model="snackbarSuccess" :timeout="4000" top color="success">
           Item {{ message }} com sucesso!
           <template v-slot:action="{ attrs }">
@@ -30,6 +30,10 @@ export default {
       snackbarSuccess: false,
       snackbarError: false
     }
+  },
+  created() {
+    if (!this.$store.getters.getSetState)
+      this.$router.push("/ar-condicionado")
   },
   methods: {
     snackbarReactSuccess(message) {

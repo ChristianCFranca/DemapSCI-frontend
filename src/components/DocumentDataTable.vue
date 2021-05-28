@@ -1,11 +1,49 @@
 <template>
     <div>
+        <v-container>
         <v-card class="ma-4">
             <v-card>
 
-                <v-card-title>
-                    {{ $store.getters.getCurrentCollectionName }}
-
+                <v-card-title class="ml-4">
+                    <div>
+                    {{ $store.getters.getCurrentCollectionName }} 
+                    </div>
+                    <div>
+                        <v-menu 
+                        offset-y
+                        :close-on-content-click="closeHeadersSelect"
+                        :nudge-width="300">
+                            <template  v-slot:activator="{ on, attrs }">
+                                <v-btn 
+                                class="center ml-4" 
+                                small 
+                                text 
+                                color="blue" 
+                                plain
+                                v-bind="attrs"
+                                v-on="on">
+                                    Selecionar Colunas
+                                </v-btn>
+                            </template>
+                            <v-card class="py-4 px-8" flat>
+                                <v-row cols="12">
+                                    <v-col 
+                                    cols="12" 
+                                    xs="12"
+                                    sm="6"
+                                    md="3"
+                                    v-for="item in $store.getters.getCurrentDocumentDescriptionCleaned" 
+                                    :key="item.value">
+                                        <v-checkbox
+                                        v-model="item.active"
+                                        :label="item.text"
+                                        :disabled="item.value === `tag`">
+                                        </v-checkbox>
+                                    </v-col>
+                                </v-row>
+                            </v-card>
+                        </v-menu>
+                    </div>
                     <v-spacer></v-spacer>
 
                     <v-text-field
@@ -14,19 +52,16 @@
                         label="Pesquisar"
                         single-line
                         hide-details
+                        class="mr-4"
                     ></v-text-field>
 
                     <v-spacer></v-spacer>
 
-                    <v-btn  small text class="mt-4" color="primary" @click="dialogAdd = true"> <v-icon left>mdi-plus</v-icon>Adicionar Item </v-btn>
+                    <v-btn  small text class="mt-4" color="primary" @click="addItem()"> <v-icon left>mdi-plus</v-icon>Adicionar Item </v-btn>
                 </v-card-title>
 
-                <v-dialog v-model="dialogAdd" scrollable>
-                    <DocumentForm :empty="true" :loadingSave="loadingSave" @closeForm="dialogAdd = false" @newFormValid="createItem"/>
-                </v-dialog>
-
-                <v-dialog v-model="dialogEdit" scrollable>
-                    <DocumentForm :inputData="currentDocument" :empty="false" :loadingSave="loadingSave" @closeForm="dialogEdit = false" @newFormUpdate="updateItem"/>
+                <v-dialog v-model="dialog" scrollable>
+                    <DocumentForm :empty="empty" :loadingSave="loadingSave" @closeForm="dialog=false" @newFormUpdate="updateItem" @newFormValid="createItem"/>
                 </v-dialog>
 
                 <v-dialog v-model="dialogDelete" max-width="510px">
@@ -59,12 +94,12 @@
                             <v-card class="my-4" flat>
                                 <v-card-text class="black--text">
                                     <v-row cols="12">
-                                        <v-col cols="4" v-for="(value, key) in documentDescription" :key="key">
+                                        <v-col cols="4" v-for="(value, key) in $store.getters.getCurrentDocumentDescriptionCleaned" :key="key">
                                             <div class="font-weight-bold grey--text text--darken-2 text-body-2">
-                                                {{ documentDescription[key] }}
+                                                {{ value.text }}
                                             </div>
                                             <div class="font-weight-light text-body-1">
-                                                {{ item[key] }}
+                                                {{ item[value.value] }}
                                             </div>
                                         </v-col>
                                     </v-row>
@@ -79,13 +114,14 @@
                     </template>
 
                     <template v-slot:no-data>
-                        <h1 class="font-weight-light">Nenhum dado disponível.</h1> <v-icon large class="mb-2">mdi-emoticon-sad-outline</v-icon>
+                        <h1 class="font-weight-light">Nenhum dado disponível.</h1> <v-icon large class="mb-2">mdi-emoticon-happy-outline</v-icon>
                     </template>
-                
+
                 </v-data-table>
 
             </v-card>
         </v-card>
+        </v-container>
     </div>
 </template>
 
@@ -105,21 +141,18 @@ export default {
             expanded: [],
             options: {},
             totalDocuments: 0,
-            documentToDelete: null,
+            documentIdToDelete: null,
             dialog: false,
-            dialogAdd: false,
-            dialogEdit: false,
             dialogDelete: false,
             search: '',
+            closeHeadersSelect: false,
             page: 0,
             passengers: [],
             loading: true,
             loadingDelete: false,
             loadingSave: false,
-            headers: this.$store.getters.getCurrentActiveHeaders,
             documents: [],
-            documentDescription: null,
-            currentDocument: null
+            empty: false
         };
     },
     mounted() {
@@ -134,41 +167,44 @@ export default {
             .finally(() => this.loading = false);
         },
         deleteItem(_id) {
-            this.documentToDelete = _id;
+            this.documentIdToDelete = _id;
             this.dialogDelete = true;
         },
         deleteItemConfirm () {
             this.loadingDelete = true;
-            Service.delete(`${this.$store.getters.getRoute}/${this.documentToDelete}`)
+            Service.delete(`${this.$store.getters.getRoute}/${this.documentIdToDelete}`)
             .then(() => {this.logTable(); this.$emit('itemCRUD', 'removido');})
             .catch(error => {console.log(error); this.$emit('itemCRUDError', error.response);})
             .finally(() => {
                 this.loadingDelete = false;
-                this.documentToDelete = null;
+                this.documentIdToDelete = null;
                 this.dialogDelete = false;
             });
-        },
-        closeUpdate() {
-            this.dialogDelete = false;
         },
         createItem(newDocument) {
             this.loadingSave = true;
             Service.post(`${this.$store.getters.getRoute}`, newDocument)
             .then(() => {this.$emit('itemCRUD', 'adicionado');})
             .catch(error => {console.log(error); this.$emit('itemCRUDError', error.response);})
-            .finally(() => {this.logTable(); this.loadingSave = false; this.dialogAdd = false});
-            this.closeUpdate()
+            .finally(() => {this.logTable(); this.loadingSave = false; this.dialog = false, this.dialogDelete = false;});
         },
         updateItem(newDocument) {
-            Service.put(`${this.$store.getters.getRoute}/${newDocument._id}`, newDocument)
+            this.loadingSave = true;
+            const document_id = this.$store.getters.getCurrentDocumentId;
+            Service.put(`${this.$store.getters.getRoute}/${document_id}`, newDocument)
             .then(() => {this.$emit('itemCRUD', 'atualizado');})
             .catch(error => {console.log(error); this.$emit('itemCRUDError', error.response);})
-            .finally(() => {this.logTable(); this.dialogEdit = false});
-            this.closeUpdate()
+            .finally(() => {this.logTable(); this.loadingSave = false; this.dialog = false, this.dialogDelete = false;});
+        },
+        addItem() {
+            this.$store.commit('SET_CURRENT_DOCUMENT', null);
+            this.empty = true;
+            this.dialog = true;
         },
         editItem(document) {
-            this.currentDocument = {...document};
-            this.dialogEdit = true;
+            this.$store.commit('SET_CURRENT_DOCUMENT', document)
+            this.empty = false;
+            this.dialog = true;
         },
         capitalize(value) {
             if (!value) return ''
@@ -211,8 +247,13 @@ export default {
         }, 250),
         */
     },
-    /*
+    computed: {
+        headers() {
+            return this.$store.getters.getCurrentActiveHeaders
+        }
+    },
     watch: {
+        /*
         options: {
             handler() {
                 this.loading = true;
@@ -226,7 +267,7 @@ export default {
                 this.logTableAsync()
             }
         }
+        */
     }
-    */
 }
 </script>
