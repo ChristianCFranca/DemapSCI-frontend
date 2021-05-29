@@ -28,7 +28,7 @@ export default new Vuex.Store({
             state.documentDescription = state.documentDescription.map((value) => {
                 if (value.dropRequest && value.dropItems){
                     value.loading = true;
-                    Service.get(`${state.route}/unique/${value.value}`)
+                    Service.get(value.overrideRoute ? value.overrideRoute : `${state.route}/unique/${value.value}`)
                     .then(response => {
                         value.dropItems = response.data;
                     })

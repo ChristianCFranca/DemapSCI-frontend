@@ -1,6 +1,6 @@
 <template>
     <v-card height="700px">
-        <v-card-title> Adicionar Fan Coil </v-card-title>
+        <v-card-title> Adicionar {{ this.$store.getters.getCurrentCollectionName }} </v-card-title>
         <v-divider></v-divider>
         <v-card-text>
             <v-form ref="form" v-model="valid">
@@ -15,7 +15,7 @@
                                 :rules="item.rule"
                                 :counter="50"
                                 clearable
-                                outlined
+                                
                                 v-if="item.type === `text`"
                             ></v-text-field>
 
@@ -141,7 +141,6 @@
 </template>
 
 <script>
-// import Service from '../services/Service.js'
 
 export default {
 
@@ -156,6 +155,9 @@ export default {
     },
     methods: {
         saveData() {
+            if (!this.$refs.form.validate())
+                return
+
             for (const key in this.inputData) {
                 if (this.inputData[key] === "")
                     this.inputData[key] = null;
@@ -177,27 +179,6 @@ export default {
             this.resetAutoCompletes();
             this.$emit("closeForm");
         },
-        /*
-        searchFabricantes () {
-            // Items have already been loaded
-            if (this.fabricantesList.length > 0) return
-
-            // Items have already been requested
-            if (this.isFabricantesLoading) return
-
-            this.isFabricantesLoading = true
-
-            const col = "fabricante"
-            // Lazily load input items
-            Service.get(`/ar-condicionado/fancoils/unique/${col}`)
-            .then(response => {
-                console.log(response.data)
-                this.fabricantesList = response.data
-            })
-            .catch(err => {console.log(err)})
-            .finally(() => (this.isFabricantesLoading = false))
-        }
-        */
     },
     props: {
         empty: Boolean,

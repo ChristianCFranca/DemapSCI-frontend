@@ -1,6 +1,6 @@
 <template>
   <v-app class="grey lighten-4">
-    <NavBar @EquipamentosTrue="equipamentos = true" @EquipamentosFalse="equipamentos = false"/>
+    <NavBar @Equipamentos="equipamentosRoute"/>
     <v-main>
       <router-view :equipamentos="equipamentos"></router-view>
     </v-main>
@@ -20,5 +20,12 @@ export default {
   data: () => ({
     equipamentos: true
   }),
+  methods: {
+    equipamentosRoute(equipamentos) {
+      this.equipamentos = equipamentos;
+      if (this.$route.path.split('/').length > 2)
+        this.$router.push({"name": `${this.$route.path.split('/')[1]}`})
+    }
+  }
 };
 </script>

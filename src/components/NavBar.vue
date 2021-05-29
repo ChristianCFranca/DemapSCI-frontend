@@ -49,8 +49,8 @@
                 <template v-slot:extension>
                 <v-tabs>
                     <v-spacer></v-spacer>
-                    <v-tab @click="$emit('EquipamentosTrue')">Equipamentos</v-tab>
-                    <v-tab @click="$emit('EquipamentosFalse')">Sistemas</v-tab>
+                    <v-tab @click="$emit('Equipamentos', true)">Equipamentos</v-tab>
+                    <v-tab @click="$emit('Equipamentos', false)">Sistemas</v-tab>
                     <v-spacer></v-spacer>
                 </v-tabs>
                 </template>
