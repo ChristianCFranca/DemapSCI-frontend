@@ -14,10 +14,10 @@ const apiClient = axios.create({
 apiClient.interceptors.response.use(response => {
     return response;
 }, error => {
-    if (error.response.status === 401) {
+    if (error.response.status === 401 && store.getters.getIsAuthenticated) {
         store.dispatch('logout')
     }
-    return error;
+    return Promise.reject(error);
 });
 
 class Service {

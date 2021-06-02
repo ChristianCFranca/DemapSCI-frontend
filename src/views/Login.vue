@@ -130,6 +130,7 @@ export default {
             .then(() => {
             })
             .catch(error => {
+                console.log(typeof(error))
                 console.log(error);
                 if (error?.response?.data){
                     this.errorMessage = error.response.data.detail;
