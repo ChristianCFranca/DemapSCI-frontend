@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from '../store'
 import VueRouter from 'vue-router'
 import ArCondicionado from '../views/ar-condicionado/ArCondicionado.vue'
 import Documentos from '../views/ar-condicionado/equipamentos/Documentos.vue'
@@ -6,6 +7,7 @@ import Energia from '../views/energia/Energia.vue'
 import Ventilacao from '../views/ventilacao/Ventilacao.vue'
 import Manutencao from '../views/manutencao/Manutencao.vue'
 import Incendio from '../views/incendio/Incendio.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -14,6 +16,11 @@ const routes = [
     path: '/',
     redirect: '/ar-condicionado',
     name: 'home'
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   },
   {
     path: '/ar-condicionado',
@@ -87,5 +94,14 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  setTimeout(() => {
+    if (to.name !== 'login' && !store.getters.getIsAuthenticated){
+      next({name: 'login'})
+    }
+    else next()
+}, 1)
+});
 
 export default router

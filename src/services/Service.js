@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '../store'
 
 const apiClient = axios.create({
     // baseURL: '//localhost:8000',
@@ -9,6 +10,15 @@ const apiClient = axios.create({
         'Content-Type': 'application/json'
     }
 })
+
+apiClient.interceptors.response.use(response => {
+    return response;
+}, error => {
+    if (error.response.status === 401) {
+        store.dispatch('logout')
+    }
+    return error;
+});
 
 class Service {
     get(path, data) {
@@ -25,6 +35,10 @@ class Service {
 
     delete(path) {
         return apiClient.delete(path)
+    }
+
+    set_token(token) {
+        apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
 }
 

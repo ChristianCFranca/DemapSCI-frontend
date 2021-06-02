@@ -1,7 +1,7 @@
 <template>
-  <v-app class="grey lighten-4">
-    <NavBar @Equipamentos="equipamentosRoute"/>
-    <v-main>
+  <v-app>
+    <NavBar @Equipamentos="equipamentosRoute"  class="grey lighten-4"/>
+    <v-main :class="$store.getters.getIsAuthenticated ? `grey lighten-4` : ``">
       <router-view :equipamentos="equipamentos"></router-view>
     </v-main>
   </v-app>

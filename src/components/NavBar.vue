@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="$store.getters.getIsAuthenticated">
         <v-app-bar
         color="#6A76AB"
         dark

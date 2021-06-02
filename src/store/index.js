@@ -1,23 +1,35 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import Service from "../services/Service.js";
+import router from '../router';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-      set: false,
-      collectionName: null,
-      route: null,
-      documentDescription: null,
-      rules: {
-          "nonEmptyRule": [v => !!v || "Campo obrigatório."],
-          "posNumberRule": [v => (!isNaN(v) && v > 0 || !v) || "Necessita ser um número positivo."],
-          "none": [() => true]
-      },
-      currentDocumentBlueprint: {}
-  },
-  mutations: {
+    state: {
+        isAuthenticated: false,
+        set: false,
+        collectionName: null,
+        route: null,
+        documentDescription: null,
+        rules: {
+            "nonEmptyRule": [v => !!v || "Campo obrigatório."],
+            "posNumberRule": [v => (!isNaN(v) && v > 0 || !v) || "Necessita ser um número positivo."],
+            "none": [() => true]
+        },
+        currentDocumentBlueprint: {}
+    },
+    mutations: {
+        SET_AUTHENTICATION_DATA(state, userData) {
+            state.isAuthenticated = true;
+            Service.set_token(userData.access_token)
+            localStorage.setItem('user', JSON.stringify(userData));
+        },
+        USER_CLEAR_DATA(store) {
+            localStorage.removeItem('user');
+            store.isAuthenticated = false;
+            location.reload(); // Força um refresh da página, destruindo o estado do vuex
+        },
         SET_COLLECTION_DATA(state, collectionData) {
             state.collectionName = collectionData.name;
             state.documentDescription = collectionData.documentDescription;
@@ -44,10 +56,23 @@ export default new Vuex.Store({
                 return acc
             }, {})
         }
-  },
-  actions: {
-  },
-  getters: {
+    },
+    actions: {
+        authenticate({ commit }, credentials) {
+            return Service.post('/auth/token', credentials)
+            .then(response => {
+                commit('SET_AUTHENTICATION_DATA', response.data)
+                router.push({name: 'ar-condicionado'});
+                return response
+            })
+        },
+        logout({ commit }) {
+            commit('USER_CLEAR_DATA')
+            router.push({name: 'login'})
+        },
+    },
+    getters: {
+        getIsAuthenticated: state => state.isAuthenticated,
         getCurrentCollectionName: state => state.collectionName,
         getCurrentDocumentDescription: state => state.documentDescription,
         getCurrentDocumentDescriptionCleaned: state => state.documentDescription.filter((obj) => obj["value"] !== 'data-table-expand' && obj["value"] !== 'actions'  && obj["value"] !== '_id'),
@@ -57,5 +82,5 @@ export default new Vuex.Store({
         getRoute: state => state.route,
         getCurrentDocumentId: state => state.currentDocumentBlueprint._id,
         getSetState: state => state.set
-  }
+    }
 });
