@@ -20,9 +20,21 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn icon>
-            <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
+        <div class="text-center">
+            <v-menu offset-y>
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                    icon
+                    v-bind="attrs"
+                    v-on="on">
+                        <v-icon>mdi-dots-vertical</v-icon>
+                    </v-btn>
+                </template>
+                <v-btn x-large class="blue--text" @click="logout()">
+                    <v-icon>mdi-logout</v-icon> Sair
+                </v-btn>
+            </v-menu>
+        </div>
 
         <template v-slot:extension>
             <v-tabs>
@@ -65,6 +77,12 @@
 export default {
     data() {
         return {
+            dropdown: false
+        }
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch('logout')
         }
     }
 }
