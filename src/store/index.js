@@ -11,6 +11,7 @@ export default new Vuex.Store({
         set: false,
         collectionName: null,
         route: null,
+        documents: [],
         documentDescription: null,
         rules: {
             "nonEmptyRule": [v => !!v || "Campo obrigatório."],
@@ -35,6 +36,18 @@ export default new Vuex.Store({
             state.documentDescription = collectionData.documentDescription;
             state.route = collectionData.route;
             state.set = true;
+        },
+        SET_DOCUMENTS(state, documents) {
+            const dateKeys = state.documentDescription.filter((itemDesc) => itemDesc.type === "date").map((itemDesc) => itemDesc.value)
+            state.documents = documents.map((obj) => {
+                dateKeys.forEach(function(key) {
+                    obj[key] = new Date(obj[key]).toLocaleDateString()
+                }) 
+                return obj
+            });
+        },
+        CLEAR_DOCUMENTS(state) {
+            state.documents = []
         },
         SET_CURRENT_DOCUMENT(state, document) {
             state.documentDescription = state.documentDescription.map((value) => {
@@ -70,10 +83,17 @@ export default new Vuex.Store({
             commit('USER_CLEAR_DATA')
             router.push({name: 'login'})
         },
+        get_documents({ commit, getters }) {
+            return Service.get(`${getters.getRoute}`)
+            .then(response => {
+                commit('SET_DOCUMENTS', response.data)
+            })
+        }
     },
     getters: {
         getIsAuthenticated: state => state.isAuthenticated,
         getCurrentCollectionName: state => state.collectionName,
+        getDocuments: state => state.documents,
         getCurrentDocumentDescription: state => state.documentDescription,
         getCurrentDocumentDescriptionCleaned: state => state.documentDescription.filter((obj) => obj["value"] !== 'data-table-expand' && obj["value"] !== 'actions'  && obj["value"] !== '_id'),
         getCurrentActiveHeaders: state => state.documentDescription.filter((obj) => obj['active']),

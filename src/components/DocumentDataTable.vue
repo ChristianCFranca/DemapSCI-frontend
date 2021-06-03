@@ -147,24 +147,30 @@ export default {
             search: '',
             closeHeadersSelect: false,
             page: 0,
-            passengers: [],
             loading: true,
             loadingDelete: false,
             loadingSave: false,
-            documents: [],
             empty: false
         };
     },
     mounted() {
         this.logTable();
     },
+    destroyed() {
+        this.$store.commit('CLEAR_DOCUMENTS')
+    },
     methods: {
         logTable() {
             this.loading = true;
-            Service.get(`${this.$store.getters.getRoute}`)
-            .then(response => {this.documents = response.data})
-            .catch(error => {console.log(error);  this.$emit('itemCRUDError', error.response);})
-            .finally(() => this.loading = false);
+            this.$store.dispatch('get_documents')
+            .then(() => {})
+            .catch(error => {
+                console.log(error);  
+                this.$emit('itemCRUDError', error.response);
+            })
+            .finally(() => {
+                this.loading = false
+            });
         },
         deleteItem(_id) {
             this.documentIdToDelete = _id;
@@ -250,6 +256,9 @@ export default {
     computed: {
         headers() {
             return this.$store.getters.getCurrentActiveHeaders
+        },
+        documents() {
+            return this.$store.getters.getDocuments
         }
     },
     watch: {
