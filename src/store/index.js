@@ -12,6 +12,7 @@ export default new Vuex.Store({
         collectionName: null,
         route: null,
         documents: [],
+        dateKeys: [],
         documentDescription: null,
         rules: {
             "nonEmptyRule": [v => !!v || "Campo obrigatório."],
@@ -38,13 +39,8 @@ export default new Vuex.Store({
             state.set = true;
         },
         SET_DOCUMENTS(state, documents) {
-            const dateKeys = state.documentDescription.filter((itemDesc) => itemDesc.type === "date").map((itemDesc) => itemDesc.value)
-            state.documents = documents.map((obj) => {
-                dateKeys.forEach(function(key) {
-                    obj[key] = new Date(obj[key]).toLocaleDateString()
-                }) 
-                return obj
-            });
+            state.dateKeys = state.documentDescription.filter((itemDesc) => itemDesc.type === "date").map((itemDesc) => itemDesc.value)
+            state.documents = documents
         },
         CLEAR_DOCUMENTS(state) {
             state.documents = []
@@ -101,6 +97,7 @@ export default new Vuex.Store({
         getCurrentRules: state => state.rules,
         getRoute: state => state.route,
         getCurrentDocumentId: state => state.currentDocumentBlueprint._id,
-        getSetState: state => state.set
+        getSetState: state => state.set,
+        getDateKeys: state => state.dateKeys
     }
 });

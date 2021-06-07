@@ -33,6 +33,7 @@
                             ></v-select>
 
                             <v-combobox
+                                ref="combobox"
                                 :items="item.dropItems"
                                 v-model="inputData[`${item.value}`]"
                                 :hint="item.hint"
@@ -46,6 +47,7 @@
                                 clearable
                                 outlined
                                 v-if="item.type === `autocomplete`"
+                                @input.native="e => inputData[`${item.value}`] = e.target.value"
                             ></v-combobox>
 
                             <v-menu

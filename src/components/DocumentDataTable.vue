@@ -113,6 +113,14 @@
                         <v-icon small @click="deleteItem(item._id)">mdi-delete</v-icon>
                     </template>
 
+                    <template v-slot:[`item.dataFabricacao`]="{ item }">
+                        {{ new Date(item.dataFabricacao).toLocaleDateString() }}
+                    </template>
+
+                    <template v-slot:[`item.dataInstalacao`]="{ item }">
+                        {{ new Date(item.dataInstalacao).toLocaleDateString() }}
+                    </template>
+                    
                     <template v-slot:no-data>
                         <h1 class="font-weight-light">Nenhum dado disponível.</h1> <v-icon large class="mb-2">mdi-emoticon-happy-outline</v-icon>
                     </template>

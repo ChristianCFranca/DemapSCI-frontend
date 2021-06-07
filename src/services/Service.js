@@ -3,7 +3,7 @@ import store from '../store'
 
 const apiClient = axios.create({
     // baseURL: '//localhost:8000',
-    baseURL: 'https://demap-sci-backend.herokuapp.com',
+    baseURL: 'https://6rm17wsur7.execute-api.sa-east-1.amazonaws.com/prod',
     withCredentials: true,
     headers: {
         Accept: 'application/json',
