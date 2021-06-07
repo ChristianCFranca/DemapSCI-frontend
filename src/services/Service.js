@@ -2,8 +2,7 @@ import axios from 'axios'
 import store from '../store'
 
 const apiClient = axios.create({
-    // baseURL: '//localhost:8000',
-    baseURL: 'https://6rm17wsur7.execute-api.sa-east-1.amazonaws.com/prod',
+    baseURL: process.env.BACKEND_URL ? process.env.BACKEND_URL : '//localhost:8000',
     withCredentials: true,
     headers: {
         Accept: 'application/json',
