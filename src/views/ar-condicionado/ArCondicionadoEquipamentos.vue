@@ -6,7 +6,7 @@
           <v-row justify="center">
 
             <v-card hover v-for="equip in grupo.equipamentos" :key="equip.name" class="text-center ma-4" color="light-blue lighten-5">
-                <v-img src="@/assets/ar-condicionado/card-banner.jpg" max-width="250px"></v-img>
+                <v-img :src="equip.src ? equip.src : require(`@/assets/ar-condicionado/card-banner.jpg`)" max-width="250px" max-height="122px"></v-img>
                 <v-card-title class="justify-center"> {{ equip.name }} </v-card-title>
                 <v-card-subtitle> {{ grupo.tipo }} </v-card-subtitle>
                 <v-divider></v-divider>
@@ -37,6 +37,7 @@ export default {
           {
             name: "Fan Coils", 
             route: "/ar-condicionado/fancoils",
+            src: require("@/assets/ar-condicionado/fancoils.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
               {"value": "data-table-expand", "text": "", active: true, sortable: false},
@@ -270,6 +271,7 @@ export default {
           {
             name: "Chillers",
             route: "/ar-condicionado/chillers",
+            src: require("@/assets/ar-condicionado/chillers.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
               {"value": "data-table-expand", "text": "", active: true, sortable: false},
@@ -470,6 +472,7 @@ export default {
           {
             name: "Bombas",
             route: "/ar-condicionado/bombas",
+            src: require("@/assets/ar-condicionado/bombas.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
               {"value": "data-table-expand", "text": "", active: true, sortable: false},
@@ -610,6 +613,7 @@ export default {
           {
             name: "Torres de Resfriamento",
             route: "/ar-condicionado/torres",
+            src: require("@/assets/ar-condicionado/torres.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
               {"value": "data-table-expand", "text": "", active: true, sortable: false},
@@ -771,6 +775,7 @@ export default {
           {
             name: "Splits",
             route: "/ar-condicionado/splits",
+            src: require("@/assets/ar-condicionado/splits.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
               {"value": "data-table-expand", "text": "", active: true, sortable: false},
@@ -943,6 +948,7 @@ export default {
           {
             name: "Selfs",
             route: "/ar-condicionado/selfs",
+            src: require("@/assets/ar-condicionado/selfs.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
               {"value": "data-table-expand", "text": "", active: true, sortable: false},
@@ -1144,6 +1150,7 @@ export default {
           {
             name: "Unidades Condensadoras",
             route: "/ar-condicionado/vrfconds",
+            src: require("@/assets/ar-condicionado/vrfs.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
               {"value": "data-table-expand", "text": "", active: true, sortable: false},
@@ -1290,6 +1297,7 @@ export default {
           {
             name: "Unidades Evaporadoras",
             route: "/ar-condicionado/vrfevaps",
+            src: require("@/assets/ar-condicionado/vrfs.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
               {"value": "data-table-expand", "text": "", active: true, sortable: false},
