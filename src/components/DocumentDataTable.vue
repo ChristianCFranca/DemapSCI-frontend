@@ -1,8 +1,7 @@
 <template>
     <div>
         <v-container>
-        <v-card class="ma-4">
-            <v-card>
+            <v-card class="ma-4">
 
                 <v-card-title class="ml-4">
                     <div>
@@ -25,6 +24,7 @@
                                     Selecionar Colunas
                                 </v-btn>
                             </template>
+                            
                             <v-card class="py-4 px-8" flat>
                                 <v-row cols="12">
                                     <v-col 
@@ -54,6 +54,9 @@
                         hide-details
                         class="mr-4"
                     ></v-text-field>
+                    <v-btn fab small text class="primary" :loading="isDownloading" @click="getDocumentsAsCSV">
+                        <v-icon>mdi-download</v-icon>
+                    </v-btn>
 
                     <v-spacer></v-spacer>
 
@@ -128,7 +131,6 @@
                 </v-data-table>
 
             </v-card>
-        </v-card>
         </v-container>
     </div>
 </template>
@@ -145,6 +147,8 @@ export default {
     },
     data() {
         return {
+            downloadingMessage: null,
+            isDownloading: false,
             collectionName: null,
             expanded: [],
             options: {},
@@ -224,7 +228,36 @@ export default {
             if (!value) return ''
             value = value.toString()
             return value.charAt(0).toUpperCase() + value.slice(1)
-        }
+        },
+        forceFileDownload(response) {
+            const url = window.URL.createObjectURL(new Blob([response.data]))
+            const link = document.createElement('a')
+            link.href = url
+            link.setAttribute('download', `${this.$store.getters.getCurrentCollectionName}.csv`)
+            document.body.appendChild(link)
+            link.click()
+        },
+        getDocumentsAsCSV() {
+            this.isDownloading = true
+            this.$store.dispatch('downloadCSV')
+            .then(response => {
+                if (response.status === 204)
+                    this.$emit('itemCRUDError', `A tabela está vazia.`);
+                else
+                    this.forceFileDownload(response)
+                })
+            .catch(error => {
+                if (!error.response)
+                    this.downloadingMessage = "Banco de dados indisponível.";
+                else 
+                    this.downloadingMessage = "Nenhum dado disponível.";
+                this.$emit('itemCRUDError', this.downloadingMessage);
+                console.log(error); 
+                })
+            .finally(() => {
+                this.isDownloading = false;
+            })
+        },
         /*
         logTableAsync: _.debounce(function() {
             console.log(this.options);

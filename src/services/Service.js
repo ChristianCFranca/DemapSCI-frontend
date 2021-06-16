@@ -39,6 +39,10 @@ class Service {
     set_token(token) {
         apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
+
+    download(path) {
+        return apiClient.get(path, {responseType: 'arraybuffer'})
+    }
 }
 
 export default new Service()

@@ -7,7 +7,7 @@
           </template>
       </v-snackbar>
       <v-snackbar v-model="snackbarError" :timeout="4000" top color="error">
-          Erro: {{ message }}...
+          Erro: {{ message }}
           <template v-slot:action="{ attrs }">
               <v-btn color="white" v-bind="attrs" text @click="snackbarError = false">Close</v-btn>
           </template>
@@ -42,8 +42,9 @@ export default {
     },
     snackbarReactError(message) {
       if (message) {
+        console.log(message)
         this.message = message;
-        if (message.data.detail)
+        if (message?.data?.detail)
           this.message = message.data.detail;
       } else
           this.message = "Ocorreu um problema desconhecido"

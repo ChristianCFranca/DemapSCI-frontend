@@ -84,6 +84,12 @@ export default new Vuex.Store({
             .then(response => {
                 commit('SET_DOCUMENTS', response.data)
             })
+        },
+        downloadCSV({ getters }) {
+            return Service.download(`${getters.getRoute}/download/`)
+                .then(response => {
+                    return response
+                })
         }
     },
     getters: {
