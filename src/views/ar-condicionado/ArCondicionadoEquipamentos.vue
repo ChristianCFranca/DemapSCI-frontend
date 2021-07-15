@@ -165,6 +165,15 @@ export default {
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule']},
               {
+                value: "perdaDeCarga", 
+                text: "Perda de Carga do Fluido (mca)", 
+                hint: "Exemplo: 5.0",
+                active: true, 
+                sortable: true,
+                required: false,
+                type: "text", 
+                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+              {
                 value: "tipoVentilador", 
                 text: "Tipo do Ventilador", 
                 active: false, 
