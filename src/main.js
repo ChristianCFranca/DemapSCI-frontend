@@ -4,8 +4,10 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import axios from 'axios'
+import { Network }from 'vue-visjs'
 
 Vue.config.productionTip = false
+Vue.component('network', Network)
 
 new Vue({
   created() {

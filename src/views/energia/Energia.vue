@@ -1,5 +1,5 @@
 <template>
-    <div class="home text-center">
+    <div class="home text-center" style="height: 100%;">
       <EnergiaEquipamentos v-if="equipamentos"/>
       <EnergiaSistemas v-else/>
     </div>
