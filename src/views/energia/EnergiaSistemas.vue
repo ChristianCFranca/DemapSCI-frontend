@@ -72,7 +72,8 @@ export default {
         {id: 41, label: "Barramento Normal T4 3°SS - 6°SS", physics: true, group: "enduse", shape: "circularImage", image: require(`@/assets/energia/sistemas/b-blind.jpg`)},
 
         {id: 42, label: "QA.UPS-E1/E2", physics: true, shape: "circularImage", image: require(`@/assets/energia/sistemas/ep.jpg`)},
-        {id: 43, label: "QA.UPS-F/G", physics: true, shape: "circularImage", image: require(`@/assets/energia/sistemas/ep.jpg`)},
+        {id: 43, label: "QA.UPS-F", physics: true, shape: "circularImage", image: require(`@/assets/energia/sistemas/ep.jpg`)},
+        {id: 118, label: "QA.UPS-G", physics: true, shape: "circularImage", image: require(`@/assets/energia/sistemas/ep.jpg`)},
         {id: 44, label: "QESB - Exaustão Sistema B", physics: true, group: "enduse"},
         {id: 45, label: "QTC - Bombas Arrefecimento GMGs", physics: true, group: "enduse", shape: "circularImage", image: require(`@/assets/energia/sistemas/bombas.jpg`)},
 
@@ -211,7 +212,7 @@ export default {
         {from: 5, to: 41, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
         {from: 21, to: 42, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
         {from: 18, to: 43, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
-        {from: 21, to: 43, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
+        {from: 21, to: 118, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
         {from: 21, to: 44, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
         {from: 21, to: 45, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
         {from: 20, to: 47, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
