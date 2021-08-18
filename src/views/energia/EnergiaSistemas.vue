@@ -290,7 +290,7 @@ export default {
         {from: 106, to: 115, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
         {from: 106, to: 111, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
         {from: 43, to: 116, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
-        {from: 43, to: 117, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
+        {from: 118, to: 117, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
         {from: 116, to: 113, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
         {from: 117, to: 112, arrows: "to", color: {color: "green"}, background: {enabled: true, color: "#97F0A2"}},
       ],
@@ -339,16 +339,16 @@ export default {
       edges_leaving.forEach(function(edge_obj) {
         if (is_root) {
           edge_obj.color.color = edge_obj.color.color === "red" ? "green" : "red";
-          edge_obj.background.color = edge_obj.background.color === "red" ? "#97F0A2" : "red";
+          edge_obj.background.color = edge_obj.background.color === "#E06661" ? "#97F0A2" : "#E06661";
         } else if (is_original && edges_arriving.some(edge_obj => edge_obj.color.color === "green")) {
            edge_obj.color.color = edge_obj.color.color === "red" ? "green" : "red";
-           edge_obj.background.color = edge_obj.background.color === "red" ? "#97F0A2" : "red";
+           edge_obj.background.color = edge_obj.background.color === "#E06661" ? "#97F0A2" : "#E06661";
         } else if (edges_arriving.some(edge_obj => edge_obj.color.color === "green")) {
           edge_obj.color.color = "green";
           edge_obj.background.color = "#97F0A2";
         } else if (edges_arriving.every(edge_obj => edge_obj.color.color === "red")) {
           edge_obj.color.color = "red";
-          edge_obj.background.color = "red";
+          edge_obj.background.color = "#E06661";
         } else {
           edge_obj.color.color = "green";
           edge_obj.background.color = "#97F0A2";
