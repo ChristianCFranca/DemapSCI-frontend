@@ -591,21 +591,12 @@ export default {
                 rule: this.$store.getters.getCurrentRules['none']},
               {
                 value: "pressao", 
-                text: "Pressão da Bomba (mca)",
+                text: "Altura Monométrica (m)",
                 hint: "", 
                 active: true, 
                 sortable: true,
                 required: false,
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
-              {
-                value: "alturaMonometrica", 
-                text: "Altura Monométrica (m)", 
-                hint: "",
-                active: true, 
-                sortable: true,
-                required: false,
-                type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule']},
               {
                 value: "dataFabricacao", 
