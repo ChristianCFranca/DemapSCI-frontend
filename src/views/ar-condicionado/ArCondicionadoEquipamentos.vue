@@ -94,8 +94,17 @@ export default {
                 rule: this.$store.getters.getCurrentRules['none']},
               {
                 value: "vazao", 
-                text: "Vazão (m³/h)", 
+                text: "Vazão de Ar (m³/h)", 
                 hint: "Exemplo: 6700.00",
+                active: true, 
+                sortable: true, 
+                required: false, 
+                type: "text",
+                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+               {
+                value: "vazaoAgua", 
+                text: "Vazão de Água (m³/h)", 
+                hint: "Exemplo: 15.0",
                 active: true, 
                 sortable: true, 
                 required: false, 
