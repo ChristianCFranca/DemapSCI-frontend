@@ -100,6 +100,9 @@ router.beforeEach((to, from, next) => {
     if (to.name !== 'login' && !store.getters.getIsAuthenticated){
       next({name: 'login'})
     }
+    else if (store.getters.getIsAuthenticated && to.name === 'login') {
+      next({name: 'ar-condicionado'})
+    }
     else next()
 }, 1)
 });
