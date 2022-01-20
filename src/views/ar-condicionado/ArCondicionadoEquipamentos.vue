@@ -51,9 +51,8 @@ export default {
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
                 search: '',
-                filter: value => {
-                  console.log(value);
-                  if (!this.search) return true
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
                   return String(value).toLowerCase().includes(this.search.toLowerCase())
                 }},
               {
@@ -65,7 +64,11 @@ export default {
                 type: "dropdown",
                 dropItems: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "Mezanino 8", "8", "7", "6", "5", "4", "3", "2", "1", "Plataforma", "Mezanino 1SS", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "torre", 
                 text: "Torre", 
@@ -75,7 +78,11 @@ export default {
                 type: "dropdown",
                 dropItems: ["1", "2", "3", "4"],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "modelo", 
                 text: "Modelo", 
@@ -88,7 +95,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -101,7 +112,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "vazao", 
                 text: "Vazão de Ar (m³/h)", 
@@ -111,7 +126,11 @@ export default {
                 required: false, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
                {
                 value: "vazaoAgua", 
                 text: "Vazão de Água (m³/h)", 
@@ -121,7 +140,11 @@ export default {
                 required: false, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -131,7 +154,11 @@ export default {
                 type: "dropdown",
                 dropItems: [220, 380],
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "filtro", 
                 text: "Filtro",
@@ -144,7 +171,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "alturaFiltro", 
                 text: "Altura do Filtro (mm)", 
@@ -153,7 +184,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "larguraFiltro", 
                 text: "Largura do Filtro (mm)", 
@@ -162,7 +197,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "espessuraFiltro", 
                 text: "Espessura do Filtro (mm)", 
@@ -171,7 +210,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -181,7 +224,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "pressaoEstaticaDisponivel", 
                 text: "Pressão Externa (mmca)", 
@@ -191,7 +238,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "perdaDeCarga", 
                 text: "Perda de Carga do Fluido (mca)", 
@@ -201,7 +252,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoVentilador", 
                 text: "Tipo do Ventilador", 
@@ -211,7 +266,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['Centrífugo Sirocco', 'Centrífugo Limit Load', 'Axial', 'Radial'],
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "modeloVentilador", 
                 text: "Modelo do Ventilador", 
@@ -224,7 +283,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "potenciaMotor", 
                 text: "Potência do Motor (CV)", 
@@ -233,7 +296,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -243,7 +310,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "polia", 
                 text: "Tipo de Polia",
@@ -256,7 +327,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "largura", 
                 text: "Largura (mm)", 
@@ -265,7 +340,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "altura", 
                 text: "Altura (mm)", 
@@ -274,7 +353,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "comprimento", 
                 text: "Comprimento (mm)", 
@@ -283,7 +366,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -293,7 +380,11 @@ export default {
                 type: "date", 
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -303,7 +394,11 @@ export default {
                 type: "date",
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "local", 
                 text: "Localização",
@@ -313,7 +408,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -322,7 +421,11 @@ export default {
                 required: false,
                 type: "textarea",
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ],
@@ -343,7 +446,11 @@ export default {
                 required: true, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "modelo", 
                 text: "Modelo", 
@@ -356,7 +463,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -369,7 +480,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "vazaoEvap", 
                 text: "Vazão do Evaporador (m³/h)", 
@@ -379,7 +494,11 @@ export default {
                 required: false, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "vazaoCond", 
                 text: "Vazão do Condensador (m³/h)", 
@@ -389,7 +508,11 @@ export default {
                 required: false, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -399,7 +522,11 @@ export default {
                 type: "dropdown",
                 dropItems: [220, 380],
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "potenciaMotor", 
                 text: "Potência do Motor (CV)", 
@@ -408,7 +535,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -418,7 +549,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "correnteNominal", 
                 text: "Corrente Nominal (A)", 
@@ -428,7 +563,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tempEntradaEvap", 
                 text: "Temperatura de Entrada Evaporador (°C)", 
@@ -438,7 +577,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tempSaidaEvap", 
                 text: "Temperatura de Saída Evaporador (°C)", 
@@ -448,7 +591,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tempEntradaCond", 
                 text: "Temperatura de Entrada Condensador (°C)", 
@@ -458,7 +605,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tempSaidaCond", 
                 text: "Temperatura de Saída Condensador (°C)", 
@@ -468,7 +619,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "numeroSerie", 
                 text: "Número de Série", 
@@ -478,7 +633,11 @@ export default {
                 required: true,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -488,7 +647,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoOleo", 
                 text: "Tipo de Óleo",
@@ -501,7 +664,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoGas", 
                 text: "Tipo de Gás",
@@ -514,7 +681,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -524,7 +695,11 @@ export default {
                 type: "date", 
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -534,7 +709,11 @@ export default {
                 type: "date",
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "local", 
                 text: "Localização",
@@ -544,7 +723,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -553,7 +736,11 @@ export default {
                 required: false,
                 type: "textarea",
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]
@@ -574,7 +761,11 @@ export default {
                 required: true, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "modelo", 
                 text: "Modelo", 
@@ -587,7 +778,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -600,7 +795,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "vazao", 
                 text: "Vazão (m³/h)", 
@@ -610,7 +809,11 @@ export default {
                 required: false, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -620,7 +823,11 @@ export default {
                 type: "dropdown",
                 dropItems: [220, 380],
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "potenciaMotor", 
                 text: "Potência do Motor (CV)", 
@@ -629,7 +836,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "correnteNominal", 
                 text: "Corrente Nominal (A)", 
@@ -639,7 +850,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "numeroSerie", 
                 text: "Número de Série", 
@@ -649,7 +864,11 @@ export default {
                 required: true,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -659,7 +878,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "pressao", 
                 text: "Altura Monométrica (m)",
@@ -669,7 +892,11 @@ export default {
                 required: false,
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -679,7 +906,11 @@ export default {
                 type: "date", 
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -689,7 +920,11 @@ export default {
                 type: "date",
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "local", 
                 text: "Localização",
@@ -699,7 +934,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -708,7 +947,11 @@ export default {
                 required: false,
                 type: "textarea",
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]
@@ -729,7 +972,11 @@ export default {
                 required: true, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "modelo", 
                 text: "Modelo", 
@@ -742,7 +989,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -755,7 +1006,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "vazaoAr", 
                 text: "Vazão de Ar (m³/h)", 
@@ -765,7 +1020,11 @@ export default {
                 required: false, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
                 {
                 value: "vazaoAgua", 
                 text: "Vazão de Água (m³/h)", 
@@ -775,7 +1034,11 @@ export default {
                 required: false, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -785,7 +1048,11 @@ export default {
                 type: "dropdown",
                 dropItems: [220, 380],
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "potenciaMotor", 
                 text: "Potência do Motor (CV)", 
@@ -794,7 +1061,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -804,7 +1075,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "correnteNominal", 
                 text: "Corrente Nominal (A)", 
@@ -814,7 +1089,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tempEntrada", 
                 text: "Temperatura de Entrada (°C)", 
@@ -824,7 +1103,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tempSaida", 
                 text: "Temperatura de Saída (°C)", 
@@ -834,7 +1117,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "numeroSerie", 
                 text: "Número de Série", 
@@ -844,7 +1131,11 @@ export default {
                 required: true,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -854,7 +1145,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -864,7 +1159,11 @@ export default {
                 type: "date", 
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -874,7 +1173,11 @@ export default {
                 type: "date",
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "local", 
                 text: "Localização",
@@ -884,7 +1187,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -893,7 +1200,11 @@ export default {
                 required: false,
                 type: "textarea",
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]
@@ -917,7 +1228,11 @@ export default {
                 required: true, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "pavimento", 
                 text: "Pavimento", 
@@ -927,7 +1242,11 @@ export default {
                 type: "dropdown",
                 dropItems: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "Mezanino 8", "8", "7", "6", "5", "4", "3", "2", "1", "Plataforma", "Mezanino 1SS", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "torre", 
                 text: "Torre", 
@@ -937,7 +1256,11 @@ export default {
                 type: "dropdown",
                 dropItems: ["1", "2", "3", "4"],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "modeloCond", 
                 text: "Modelo do Condensador", 
@@ -950,7 +1273,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "modeloEvap", 
                 text: "Modelo do Evaporador", 
@@ -963,7 +1290,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -976,7 +1307,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -986,7 +1321,11 @@ export default {
                 type: "dropdown",
                 dropItems: [220, 380],
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "potEvap", 
                 text: "Potência do Evaporador (CV)", 
@@ -995,7 +1334,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "potCond", 
                 text: "Potência do Condensador (CV)", 
@@ -1004,7 +1347,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -1014,7 +1361,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoGas", 
                 text: "Tipo de Gás", 
@@ -1027,7 +1378,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoFiltro", 
                 text: "Tipo do Filtro", 
@@ -1037,7 +1392,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['Lavável', 'Descartável'],
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "numeroSerie", 
                 text: "Número de Série", 
@@ -1047,7 +1406,11 @@ export default {
                 required: true,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -1057,7 +1420,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -1067,7 +1434,11 @@ export default {
                 type: "date", 
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -1077,7 +1448,11 @@ export default {
                 type: "date",
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "local", 
                 text: "Localização",
@@ -1087,7 +1462,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -1096,7 +1475,11 @@ export default {
                 required: false,
                 type: "textarea",
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]
@@ -1117,7 +1500,11 @@ export default {
                 required: true, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "pavimento", 
                 text: "Pavimento", 
@@ -1127,7 +1514,11 @@ export default {
                 type: "dropdown",
                 dropItems: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "Mezanino 8", "8", "7", "6", "5", "4", "3", "2", "1", "Plataforma", "Mezanino 1SS", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "torre", 
                 text: "Torre", 
@@ -1137,7 +1528,11 @@ export default {
                 type: "dropdown",
                 dropItems: ["1", "2", "3", "4"],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "modeloCond", 
                 text: "Modelo do Condensador", 
@@ -1150,7 +1545,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "modeloEvap", 
                 text: "Modelo do Evaporador", 
@@ -1163,7 +1562,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -1176,7 +1579,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -1186,7 +1593,11 @@ export default {
                 type: "dropdown",
                 dropItems: [220, 380],
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "potEvap", 
                 text: "Potência do Evaporador (CV)", 
@@ -1195,7 +1606,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "potCond", 
                 text: "Potência do Condensador (CV)", 
@@ -1204,7 +1619,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -1214,7 +1633,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoGas", 
                 text: "Tipo de Gás", 
@@ -1227,7 +1650,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "filtro", 
                 text: "Filtro", 
@@ -1239,7 +1666,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "alturaFiltro", 
                 text: "Altura do Filtro (mm)", 
@@ -1248,7 +1679,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "larguraFiltro", 
                 text: "Largura do Filtro (mm)", 
@@ -1257,7 +1692,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "espessuraFiltro", 
                 text: "Espessura do Filtro (mm)", 
@@ -1266,7 +1705,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "numeroSerie", 
                 text: "Número de Série", 
@@ -1276,7 +1719,11 @@ export default {
                 required: true,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -1286,7 +1733,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -1296,7 +1747,11 @@ export default {
                 type: "date", 
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -1306,7 +1761,11 @@ export default {
                 type: "date",
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "local", 
                 text: "Localização",
@@ -1316,7 +1775,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -1325,7 +1788,11 @@ export default {
                 required: false,
                 type: "textarea",
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]
@@ -1349,7 +1816,11 @@ export default {
                 required: true, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tagEvap", 
                 text: "Tag da Evaporadora", 
@@ -1363,7 +1834,11 @@ export default {
                 loading: false,
                 overrideRoute: '/ar-condicionado/vrfevaps/unique/tag',
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "pavimento", 
                 text: "Pavimento", 
@@ -1373,7 +1848,11 @@ export default {
                 type: "dropdown",
                 dropItems: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "Mezanino 8", "8", "7", "6", "5", "4", "3", "2", "1", "Plataforma", "Mezanino 1SS", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "torreAla", 
                 text: "Torre / Ala", 
@@ -1385,7 +1864,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "modelo", 
                 text: "Modelo", 
@@ -1398,7 +1881,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -1411,7 +1898,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -1421,7 +1912,11 @@ export default {
                 type: "dropdown",
                 dropItems: [220, 380],
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "potenciaMotor", 
                 text: "Potência do Motor (CV)", 
@@ -1430,7 +1925,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -1440,7 +1939,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoFiltro", 
                 text: "Tipo do Filtro", 
@@ -1450,7 +1953,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['Lavável', 'Descartável'],
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -1460,7 +1967,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -1470,7 +1981,11 @@ export default {
                 type: "date", 
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -1480,7 +1995,11 @@ export default {
                 type: "date",
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "local", 
                 text: "Localização",
@@ -1490,7 +2009,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -1499,7 +2022,11 @@ export default {
                 required: false,
                 type: "textarea",
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]
@@ -1520,7 +2047,11 @@ export default {
                 required: true, 
                 type: "text",
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tagCond", 
                 text: "Tag da Condensadora", 
@@ -1534,7 +2065,11 @@ export default {
                 loading: false,
                 overrideRoute: '/ar-condicionado/vrfconds/unique/tag',
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "pavimento", 
                 text: "Pavimento", 
@@ -1544,7 +2079,11 @@ export default {
                 type: "dropdown",
                 dropItems: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "Mezanino 8", "8", "7", "6", "5", "4", "3", "2", "1", "Plataforma", "Mezanino 1SS", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "torreAla", 
                 text: "Torre / Ala", 
@@ -1556,7 +2095,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "modelo", 
                 text: "Modelo", 
@@ -1569,7 +2112,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -1582,7 +2129,11 @@ export default {
                 dropRequest: true,
                 loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -1592,7 +2143,11 @@ export default {
                 type: "dropdown",
                 dropItems: [220, 380],
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "potenciaMotor", 
                 text: "Potência do Motor (CV)", 
@@ -1601,7 +2156,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -1611,7 +2170,11 @@ export default {
                 required: false,
                 type: "text", 
                 rule: this.$store.getters.getCurrentRules['posNumberRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoFiltro", 
                 text: "Tipo do Filtro", 
@@ -1621,7 +2184,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['Lavável', 'Descartável'],
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -1631,7 +2198,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -1641,7 +2212,11 @@ export default {
                 type: "date", 
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -1651,7 +2226,11 @@ export default {
                 type: "date",
                 menu: false,
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "local", 
                 text: "Localização",
@@ -1661,7 +2240,11 @@ export default {
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -1670,7 +2253,11 @@ export default {
                 required: false,
                 type: "textarea",
                 rule: this.$store.getters.getCurrentRules['none'],
-                search: ''},
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]

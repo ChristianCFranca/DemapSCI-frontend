@@ -46,14 +46,8 @@
                     </div>
                     <v-spacer></v-spacer>
 
-                    <v-text-field
-                        v-model="search"
-                        append-icon="mdi-magnify"
-                        label="Pesquisar"
-                        single-line
-                        hide-details
-                        class="mr-4"
-                    ></v-text-field>
+                    
+                    <div class="mx-2">Baixar CSV</div>
                     <v-btn fab small text class="primary" :loading="isDownloading" @click="getDocumentsAsCSV">
                         <v-icon>mdi-download</v-icon>
                     </v-btn>
@@ -84,7 +78,6 @@
                 item-key="_id"
                 :headers="headers"
                 :items="documents"
-                :search="search"
                 :items-per-page="15"
                 class="elevation-1"
                 multi-sort
@@ -115,7 +108,6 @@
                         <tr v-if="headers">
                             <td></td>
                             <td v-for="(value, key) in headers.filter(obj => obj['active'] && obj['search'] !== undefined)" :key="key">
-                                {{value.search}}
                                 <v-text-field v-model="value.search" prepend-inner-icon="mdi-magnify"></v-text-field>
                             </td>
                         </tr>
@@ -166,7 +158,6 @@ export default {
             documentIdToDelete: null,
             dialog: false,
             dialogDelete: false,
-            search: '',
             closeHeadersSelect: false,
             page: 0,
             loading: true,
