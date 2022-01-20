@@ -111,6 +111,16 @@
                         </td>
                     </template>
 
+                    <template v-slot:[`body.prepend`] v-if="!$vuetify.breakpoint.xs">
+                        <tr v-if="headers">
+                            <td></td>
+                            <td v-for="(value, key) in headers.filter(obj => obj['active'] && obj['search'] !== undefined)" :key="key">
+                                {{value.search}}
+                                <v-text-field v-model="value.search" prepend-inner-icon="mdi-magnify"></v-text-field>
+                            </td>
+                        </tr>
+                    </template>
+
                     <template v-slot:[`item.actions`]="{ item }">
                         <v-icon small class="mr-2" @click="editItem(item)">mdi-pencil</v-icon>
                         <v-icon small @click="deleteItem(item._id)">mdi-delete</v-icon>

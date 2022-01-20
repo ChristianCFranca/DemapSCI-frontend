@@ -49,7 +49,13 @@ export default {
                 sortable: true, 
                 required: true, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: '',
+                filter: value => {
+                  console.log(value);
+                  if (!this.search) return true
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
               {
                 value: "pavimento", 
                 text: "Pavimento", 
@@ -58,7 +64,8 @@ export default {
                 required: true, 
                 type: "dropdown",
                 dropItems: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "P", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "torre", 
                 text: "Torre", 
@@ -67,7 +74,8 @@ export default {
                 required: true, 
                 type: "dropdown",
                 dropItems: ["1", "2", "3", "4"],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "modelo", 
                 text: "Modelo", 
@@ -79,7 +87,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -91,7 +100,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "vazao", 
                 text: "Vazão de Ar (m³/h)", 
@@ -100,7 +110,8 @@ export default {
                 sortable: true, 
                 required: false, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
                {
                 value: "vazaoAgua", 
                 text: "Vazão de Água (m³/h)", 
@@ -109,7 +120,8 @@ export default {
                 sortable: true, 
                 required: false, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -118,7 +130,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: [220, 380],
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "filtro", 
                 text: "Filtro",
@@ -130,7 +143,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "alturaFiltro", 
                 text: "Altura do Filtro (mm)", 
@@ -138,7 +152,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "larguraFiltro", 
                 text: "Largura do Filtro (mm)", 
@@ -146,7 +161,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "espessuraFiltro", 
                 text: "Espessura do Filtro (mm)", 
@@ -154,7 +170,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -163,7 +180,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "pressaoEstaticaDisponivel", 
                 text: "Pressão Externa (mmca)", 
@@ -172,7 +190,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "perdaDeCarga", 
                 text: "Perda de Carga do Fluido (mca)", 
@@ -181,7 +200,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tipoVentilador", 
                 text: "Tipo do Ventilador", 
@@ -190,7 +210,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: ['Centrífugo Sirocco', 'Centrífugo Limit Load', 'Axial', 'Radial'],
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "modeloVentilador", 
                 text: "Modelo do Ventilador", 
@@ -202,7 +223,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "potenciaMotor", 
                 text: "Potência do Motor (CV)", 
@@ -210,7 +232,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -219,7 +242,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "polia", 
                 text: "Tipo de Polia",
@@ -231,7 +255,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "largura", 
                 text: "Largura (mm)", 
@@ -239,7 +264,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "altura", 
                 text: "Altura (mm)", 
@@ -247,7 +273,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "comprimento", 
                 text: "Comprimento (mm)", 
@@ -255,7 +282,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -264,7 +292,8 @@ export default {
                 required: false,
                 type: "date", 
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -273,7 +302,8 @@ export default {
                 required: false,
                 type: "date",
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "local", 
                 text: "Localização",
@@ -282,7 +312,8 @@ export default {
                 required: true,
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -290,7 +321,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "textarea",
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ],
@@ -310,7 +342,8 @@ export default {
                 sortable: true, 
                 required: true, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "modelo", 
                 text: "Modelo", 
@@ -322,7 +355,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -334,7 +368,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "vazaoEvap", 
                 text: "Vazão do Evaporador (m³/h)", 
@@ -343,7 +378,8 @@ export default {
                 sortable: true, 
                 required: false, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "vazaoCond", 
                 text: "Vazão do Condensador (m³/h)", 
@@ -352,7 +388,8 @@ export default {
                 sortable: true, 
                 required: false, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -361,7 +398,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: [220, 380],
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "potenciaMotor", 
                 text: "Potência do Motor (CV)", 
@@ -369,7 +407,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -378,7 +417,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "correnteNominal", 
                 text: "Corrente Nominal (A)", 
@@ -387,7 +427,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tempEntradaEvap", 
                 text: "Temperatura de Entrada Evaporador (°C)", 
@@ -396,7 +437,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tempSaidaEvap", 
                 text: "Temperatura de Saída Evaporador (°C)", 
@@ -405,7 +447,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tempEntradaCond", 
                 text: "Temperatura de Entrada Condensador (°C)", 
@@ -414,7 +457,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tempSaidaCond", 
                 text: "Temperatura de Saída Condensador (°C)", 
@@ -423,7 +467,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "numeroSerie", 
                 text: "Número de Série", 
@@ -432,7 +477,8 @@ export default {
                 sortable: true,
                 required: true,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -441,7 +487,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tipoOleo", 
                 text: "Tipo de Óleo",
@@ -453,7 +500,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tipoGas", 
                 text: "Tipo de Gás",
@@ -465,7 +513,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -474,7 +523,8 @@ export default {
                 required: false,
                 type: "date", 
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -483,7 +533,8 @@ export default {
                 required: false,
                 type: "date",
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "local", 
                 text: "Localização",
@@ -492,7 +543,8 @@ export default {
                 required: true,
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -500,7 +552,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "textarea",
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]
@@ -520,7 +573,8 @@ export default {
                 sortable: true, 
                 required: true, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "modelo", 
                 text: "Modelo", 
@@ -532,7 +586,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -544,7 +599,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "vazao", 
                 text: "Vazão (m³/h)", 
@@ -553,7 +609,8 @@ export default {
                 sortable: true, 
                 required: false, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -562,7 +619,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: [220, 380],
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "potenciaMotor", 
                 text: "Potência do Motor (CV)", 
@@ -570,7 +628,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "correnteNominal", 
                 text: "Corrente Nominal (A)", 
@@ -579,7 +638,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "numeroSerie", 
                 text: "Número de Série", 
@@ -588,7 +648,8 @@ export default {
                 sortable: true,
                 required: true,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -597,7 +658,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "pressao", 
                 text: "Altura Monométrica (m)",
@@ -606,7 +668,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -615,7 +678,8 @@ export default {
                 required: false,
                 type: "date", 
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -624,7 +688,8 @@ export default {
                 required: false,
                 type: "date",
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "local", 
                 text: "Localização",
@@ -633,7 +698,8 @@ export default {
                 required: true,
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -641,7 +707,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "textarea",
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]
@@ -661,7 +728,8 @@ export default {
                 sortable: true, 
                 required: true, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "modelo", 
                 text: "Modelo", 
@@ -673,7 +741,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -685,7 +754,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "vazaoAr", 
                 text: "Vazão de Ar (m³/h)", 
@@ -694,7 +764,8 @@ export default {
                 sortable: true, 
                 required: false, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
                 {
                 value: "vazaoAgua", 
                 text: "Vazão de Água (m³/h)", 
@@ -703,7 +774,8 @@ export default {
                 sortable: true, 
                 required: false, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -712,7 +784,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: [220, 380],
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "potenciaMotor", 
                 text: "Potência do Motor (CV)", 
@@ -720,7 +793,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -729,7 +803,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "correnteNominal", 
                 text: "Corrente Nominal (A)", 
@@ -738,7 +813,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tempEntrada", 
                 text: "Temperatura de Entrada (°C)", 
@@ -747,7 +823,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tempSaida", 
                 text: "Temperatura de Saída (°C)", 
@@ -756,7 +833,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "numeroSerie", 
                 text: "Número de Série", 
@@ -765,7 +843,8 @@ export default {
                 sortable: true,
                 required: true,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -774,7 +853,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -783,7 +863,8 @@ export default {
                 required: false,
                 type: "date", 
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -792,7 +873,8 @@ export default {
                 required: false,
                 type: "date",
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "local", 
                 text: "Localização",
@@ -801,7 +883,8 @@ export default {
                 required: true,
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -809,7 +892,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "textarea",
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]
@@ -832,7 +916,8 @@ export default {
                 sortable: true, 
                 required: true, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "pavimento", 
                 text: "Pavimento", 
@@ -841,7 +926,8 @@ export default {
                 required: true, 
                 type: "dropdown",
                 dropItems: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "P", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "torre", 
                 text: "Torre", 
@@ -850,7 +936,8 @@ export default {
                 required: true, 
                 type: "dropdown",
                 dropItems: ["1", "2", "3", "4"],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "modeloCond", 
                 text: "Modelo do Condensador", 
@@ -862,7 +949,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "modeloEvap", 
                 text: "Modelo do Evaporador", 
@@ -874,7 +962,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -886,7 +975,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -895,7 +985,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: [220, 380],
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "potEvap", 
                 text: "Potência do Evaporador (CV)", 
@@ -903,7 +994,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "potCond", 
                 text: "Potência do Condensador (CV)", 
@@ -911,7 +1003,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -920,7 +1013,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tipoGas", 
                 text: "Tipo de Gás", 
@@ -932,7 +1026,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tipoFiltro", 
                 text: "Tipo do Filtro", 
@@ -941,7 +1036,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: ['Lavável', 'Descartável'],
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "numeroSerie", 
                 text: "Número de Série", 
@@ -950,7 +1046,8 @@ export default {
                 sortable: true,
                 required: true,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -959,7 +1056,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -968,7 +1066,8 @@ export default {
                 required: false,
                 type: "date", 
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -977,7 +1076,8 @@ export default {
                 required: false,
                 type: "date",
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "local", 
                 text: "Localização",
@@ -986,7 +1086,8 @@ export default {
                 required: true,
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -994,7 +1095,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "textarea",
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]
@@ -1014,7 +1116,8 @@ export default {
                 sortable: true, 
                 required: true, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "pavimento", 
                 text: "Pavimento", 
@@ -1023,7 +1126,8 @@ export default {
                 required: true, 
                 type: "dropdown",
                 dropItems: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "P", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "torre", 
                 text: "Torre", 
@@ -1032,7 +1136,8 @@ export default {
                 required: true, 
                 type: "dropdown",
                 dropItems: ["1", "2", "3", "4"],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "modeloCond", 
                 text: "Modelo do Condensador", 
@@ -1044,7 +1149,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "modeloEvap", 
                 text: "Modelo do Evaporador", 
@@ -1056,7 +1162,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -1068,7 +1175,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -1077,7 +1185,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: [220, 380],
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "potEvap", 
                 text: "Potência do Evaporador (CV)", 
@@ -1085,7 +1194,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "potCond", 
                 text: "Potência do Condensador (CV)", 
@@ -1093,7 +1203,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -1102,7 +1213,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tipoGas", 
                 text: "Tipo de Gás", 
@@ -1114,7 +1226,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "filtro", 
                 text: "Filtro", 
@@ -1125,7 +1238,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "alturaFiltro", 
                 text: "Altura do Filtro (mm)", 
@@ -1133,7 +1247,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "larguraFiltro", 
                 text: "Largura do Filtro (mm)", 
@@ -1141,7 +1256,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "espessuraFiltro", 
                 text: "Espessura do Filtro (mm)", 
@@ -1149,7 +1265,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "numeroSerie", 
                 text: "Número de Série", 
@@ -1158,7 +1275,8 @@ export default {
                 sortable: true,
                 required: true,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -1167,7 +1285,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -1176,7 +1295,8 @@ export default {
                 required: false,
                 type: "date", 
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -1185,7 +1305,8 @@ export default {
                 required: false,
                 type: "date",
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "local", 
                 text: "Localização",
@@ -1194,7 +1315,8 @@ export default {
                 required: true,
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -1202,7 +1324,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "textarea",
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]
@@ -1225,7 +1348,8 @@ export default {
                 sortable: true, 
                 required: true, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "tagEvap", 
                 text: "Tag da Evaporadora", 
@@ -1238,7 +1362,8 @@ export default {
                 dropRequest: true,
                 loading: false,
                 overrideRoute: '/ar-condicionado/vrfevaps/unique/tag',
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "pavimento", 
                 text: "Pavimento", 
@@ -1247,7 +1372,8 @@ export default {
                 required: true, 
                 type: "dropdown",
                 dropItems: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "P", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "torreAla", 
                 text: "Torre / Ala", 
@@ -1258,7 +1384,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "modelo", 
                 text: "Modelo", 
@@ -1270,7 +1397,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -1282,7 +1410,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -1291,7 +1420,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: [220, 380],
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "potenciaMotor", 
                 text: "Potência do Motor (CV)", 
@@ -1299,7 +1429,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -1308,7 +1439,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tipoFiltro", 
                 text: "Tipo do Filtro", 
@@ -1317,7 +1449,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: ['Lavável', 'Descartável'],
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -1326,7 +1459,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -1335,7 +1469,8 @@ export default {
                 required: false,
                 type: "date", 
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -1344,7 +1479,8 @@ export default {
                 required: false,
                 type: "date",
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "local", 
                 text: "Localização",
@@ -1353,7 +1489,8 @@ export default {
                 required: true,
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -1361,7 +1498,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "textarea",
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]
@@ -1381,7 +1519,8 @@ export default {
                 sortable: true, 
                 required: true, 
                 type: "text",
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "tagCond", 
                 text: "Tag da Condensadora", 
@@ -1394,7 +1533,8 @@ export default {
                 dropRequest: true,
                 loading: false,
                 overrideRoute: '/ar-condicionado/vrfconds/unique/tag',
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "pavimento", 
                 text: "Pavimento", 
@@ -1403,7 +1543,8 @@ export default {
                 required: true, 
                 type: "dropdown",
                 dropItems: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "P", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "torreAla", 
                 text: "Torre / Ala", 
@@ -1414,7 +1555,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "modelo", 
                 text: "Modelo", 
@@ -1426,7 +1568,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "fabricante", 
                 text: "Fabricante", 
@@ -1438,7 +1581,8 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tensao", 
                 text: "Tensão (Volts)", 
@@ -1447,7 +1591,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: [220, 380],
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "potenciaMotor", 
                 text: "Potência do Motor (CV)", 
@@ -1455,7 +1600,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "cargaTermica", 
                 text: "Carga Térmica (TR)", 
@@ -1464,7 +1610,8 @@ export default {
                 sortable: true,
                 required: false,
                 type: "text", 
-                rule: this.$store.getters.getCurrentRules['posNumberRule']},
+                rule: this.$store.getters.getCurrentRules['posNumberRule'],
+                search: ''},
               {
                 value: "tipoFiltro", 
                 text: "Tipo do Filtro", 
@@ -1473,7 +1620,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: ['Lavável', 'Descartável'],
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "tipoEnergia", 
                 text: "Tipo de Energia",
@@ -1482,7 +1630,8 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: ['Normal', 'Emergência (Gerador)', 'Ininterrupta (UPS)'],
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataFabricacao", 
                 text: "Data de Fabricação", 
@@ -1491,7 +1640,8 @@ export default {
                 required: false,
                 type: "date", 
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "dataInstalacao", 
                 text: "Data de Instalação", 
@@ -1500,7 +1650,8 @@ export default {
                 required: false,
                 type: "date",
                 menu: false,
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "local", 
                 text: "Localização",
@@ -1509,7 +1660,8 @@ export default {
                 required: true,
                 type: "dropdown",
                 dropItems: ['BCB Sede', 'UniBC'],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule']},
+                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: ''},
               {
                 value: "infAdicional", 
                 text: "Informações Adicionais", 
@@ -1517,7 +1669,8 @@ export default {
                 sortable: true, 
                 required: false,
                 type: "textarea",
-                rule: this.$store.getters.getCurrentRules['none']},
+                rule: this.$store.getters.getCurrentRules['none'],
+                search: ''},
               {
                 value: "actions", "text": "Ações", active: true, sortable: false}
             ]
