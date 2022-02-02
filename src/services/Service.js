@@ -2,8 +2,7 @@ import axios from 'axios'
 import store from '../store'
 
 const apiClient = axios.create({
-    //baseURL: process.env.VUE_APP_BACKEND_URL ? process.env.VUE_APP_BACKEND_URL : '//localhost:8000',
-    baseURL: "https://demap-sci-backend.herokuapp.com",
+    baseURL: process.env.VUE_APP_BACKEND_URL ? process.env.VUE_APP_BACKEND_URL : '//localhost:8000',
     withCredentials: true,
     headers: {
         Accept: 'application/json',
