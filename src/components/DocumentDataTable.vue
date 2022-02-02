@@ -1,7 +1,6 @@
 <template>
     <div>
-        <v-container>
-            <v-card class="ma-4">
+            <v-card class="ma-5">
 
                 <v-card-title class="ml-4">
                     <div>
@@ -133,7 +132,6 @@
                 </v-data-table>
 
             </v-card>
-        </v-container>
     </div>
 </template>
 
