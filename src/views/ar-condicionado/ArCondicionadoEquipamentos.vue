@@ -62,7 +62,7 @@ export default {
                 sortable: true, 
                 required: true, 
                 type: "dropdown",
-                dropItems: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "Mezanino 8", "8", "7", "6", "5", "4", "3", "2", "1", "Plataforma", "Mezanino 1SS", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
+                dropItems: ["Cobertura", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "Mezanino 8", "8", "7", "6", "5", "4", "3", "2", "1", "Térreo", "Plataforma", "Mezanino 1SS", "1SS", "2SS", "3SS", "4SS", "5SS", "6SS"],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
                 search: '',
                 filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
