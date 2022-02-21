@@ -74,10 +74,22 @@ export default {
                 text: "Torre", 
                 active: true, 
                 sortable: true, 
-                required: true, 
+                required: false, 
                 type: "dropdown",
                 dropItems: ["1", "2", "3", "4"],
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
+              {
+                value: "ala", 
+                text: "Ala", 
+                active: false, 
+                sortable: true, 
+                required: false, 
+                type: "dropdown",
+                dropItems: ["Norte", "Sul", "Leste", "Oeste"],
                 search: '',
                 filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
                   if (!this.search) return true;
@@ -1262,6 +1274,19 @@ export default {
                   return String(value).toLowerCase().includes(this.search.toLowerCase())
                 }},
               {
+                value: "ala", 
+                text: "Ala", 
+                active: false, 
+                sortable: true, 
+                required: false, 
+                type: "dropdown",
+                dropItems: ["Norte", "Sul", "Leste", "Oeste"],
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
+              {
                 value: "modeloCond", 
                 text: "Modelo do Condensador", 
                 hint: "",
@@ -1528,6 +1553,19 @@ export default {
                 type: "dropdown",
                 dropItems: ["1", "2", "3", "4"],
                 rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                search: '',
+                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
+                  if (!this.search) return true;
+                  return String(value).toLowerCase().includes(this.search.toLowerCase())
+                }},
+              {
+                value: "ala", 
+                text: "Ala", 
+                active: false, 
+                sortable: true, 
+                required: false, 
+                type: "dropdown",
+                dropItems: ["Norte", "Sul", "Leste", "Oeste"],
                 search: '',
                 filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
                   if (!this.search) return true;
@@ -1854,16 +1892,13 @@ export default {
                   return String(value).toLowerCase().includes(this.search.toLowerCase())
                 }},
               {
-                value: "torreAla", 
-                text: "Torre / Ala", 
+                value: "ala", 
+                text: "Ala", 
                 active: true, 
                 sortable: true, 
-                required: true, 
-                type: "autocomplete",
-                dropItems: [],
-                dropRequest: true,
-                loading: false,
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                required: false, 
+                type: "dropdown",
+                dropItems: ["Norte", "Sul", "Leste", "Oeste"],
                 search: '',
                 filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
                   if (!this.search) return true;
@@ -2085,16 +2120,13 @@ export default {
                   return String(value).toLowerCase().includes(this.search.toLowerCase())
                 }},
               {
-                value: "torreAla", 
-                text: "Torre / Ala", 
+                value: "ala", 
+                text: "Ala", 
                 active: true, 
                 sortable: true, 
-                required: true, 
-                type: "autocomplete",
-                dropItems: [],
-                dropRequest: true,
-                loading: false,
-                rule: this.$store.getters.getCurrentRules['nonEmptyRule'],
+                required: false, 
+                type: "dropdown",
+                dropItems: ["Norte", "Sul", "Leste", "Oeste"],
                 search: '',
                 filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
                   if (!this.search) return true;
