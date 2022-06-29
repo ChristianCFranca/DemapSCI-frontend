@@ -2,7 +2,8 @@ import Vue from 'vue'
 import store from '../store'
 import VueRouter from 'vue-router'
 import ArCondicionado from '../views/ar-condicionado/ArCondicionado.vue'
-import Documentos from '../views/ar-condicionado/equipamentos/Documentos.vue'
+import DocumentosAC from '../views/ar-condicionado/equipamentos/Documentos.vue'
+import DocumentosEN from '../views/energia/equipamentos/Documentos.vue'
 import Energia from '../views/energia/Energia.vue'
 import Ventilacao from '../views/ventilacao/Ventilacao.vue'
 import Manutencao from '../views/manutencao/Manutencao.vue'
@@ -14,7 +15,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: '/ar-condicionado',
+    redirect: '/crud/ar-condicionado',
     name: 'home'
   },
   {
@@ -23,54 +24,59 @@ const routes = [
     component: Login
   },
   {
-    path: '/ar-condicionado',
+    path: '/crud/ar-condicionado',
     name: 'ar-condicionado',
     component: ArCondicionado
   },
   {
-    path: '/ar-condicionado/fancoils',
+    path: '/crud/ar-condicionado/fancoils',
     name: 'fancoils',
-    component: Documentos
+    component: DocumentosAC
   },
   {
-    path: '/ar-condicionado/chillers',
+    path: '/crud/ar-condicionado/chillers',
     name: 'chillers',
-    component: Documentos
+    component: DocumentosAC
   },
   {
-    path: '/ar-condicionado/torres',
+    path: '/crud/ar-condicionado/torres',
     name: 'torres',
-    component: Documentos
+    component: DocumentosAC
   },
   {
-    path: '/ar-condicionado/bombas',
+    path: '/crud/ar-condicionado/bombas',
     name: 'bombas',
-    component: Documentos
+    component: DocumentosAC
   },
   {
-    path: '/ar-condicionado/splits',
+    path: '/crud/ar-condicionado/splits',
     name: 'splits',
-    component: Documentos
+    component: DocumentosAC
   },
   {
-    path: '/ar-condicionado/selfs',
+    path: '/crud/ar-condicionado/selfs',
     name: 'selfs',
-    component: Documentos
+    component: DocumentosAC
   },
   {
-    path: '/ar-condicionado/vrfconds',
+    path: '/crud/ar-condicionado/vrfconds',
     name: 'vrfconds',
-    component: Documentos
+    component: DocumentosAC
   },
   {
-    path: '/ar-condicionado/vrfevaps',
+    path: '/crud/ar-condicionado/vrfevaps',
     name: 'vrfevaps',
-    component: Documentos
+    component: DocumentosAC
   },
   {
-    path: '/energia',
+    path: '/crud/energia',
     name: 'energia',
     component: Energia
+  },
+  {
+    path: '/crud/energia/geradores',
+    name: 'geradores',
+    component: DocumentosEN
   },
   {
     path: '/incendio',

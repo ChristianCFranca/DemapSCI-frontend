@@ -39,11 +39,11 @@
         <template v-slot:extension>
             <v-tabs>
                 <v-spacer></v-spacer>
-                <v-tab route to="/ar-condicionado">Ar Condicionado</v-tab>
-                <v-tab route to="/energia">Energia</v-tab>
-                <v-tab route to="/incendio">Incêndio</v-tab>
-                <v-tab route to="/ventilacao">Ventilação</v-tab>
-                <v-tab route to="/manutencao">Manutenção Predial</v-tab>
+                <v-tab route to="/crud/ar-condicionado">Ar Condicionado</v-tab>
+                <v-tab route to="/crud/energia">Energia</v-tab>
+                <v-tab route to="/crud/incendio">Incêndio</v-tab>
+                <v-tab route to="/crud/ventilacao">Ventilação</v-tab>
+                <v-tab route to="/crud/manutencao">Manutenção Predial</v-tab>
                 <v-spacer></v-spacer>
             </v-tabs>
         </template>

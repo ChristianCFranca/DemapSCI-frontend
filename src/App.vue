@@ -24,7 +24,7 @@ export default {
     equipamentosRoute(equipamentos) {
       this.equipamentos = equipamentos;
       if (this.$route.path.split('/').length > 2)
-        this.$router.push({"name": `${this.$route.path.split('/')[1]}`})
+        this.$router.push({"name": `${this.$route.path.split('/')[2]}`})
     }
   }
 };

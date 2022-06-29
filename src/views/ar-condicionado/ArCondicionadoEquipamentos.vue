@@ -36,7 +36,7 @@ export default {
         {tipo: "Água Gelada", equipamentos: [
           {
             name: "Fan Coils", 
-            route: "/ar-condicionado/fancoils",
+            route: "/crud/ar-condicionado/fancoils",
             src: require("@/assets/ar-condicionado/fancoils.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
@@ -444,7 +444,7 @@ export default {
           }, 
           {
             name: "Chillers",
-            route: "/ar-condicionado/chillers",
+            route: "/crud/ar-condicionado/chillers",
             src: require("@/assets/ar-condicionado/chillers.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
@@ -759,7 +759,7 @@ export default {
           }, 
           {
             name: "Bombas",
-            route: "/ar-condicionado/bombas",
+            route: "/crud/ar-condicionado/bombas",
             src: require("@/assets/ar-condicionado/bombas.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
@@ -970,7 +970,7 @@ export default {
           },
           {
             name: "Torres de Resfriamento",
-            route: "/ar-condicionado/torres",
+            route: "/crud/ar-condicionado/torres",
             src: require("@/assets/ar-condicionado/torres.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
@@ -1226,7 +1226,7 @@ export default {
         {tipo: "Expansão Direta", equipamentos: [
           {
             name: "Splits",
-            route: "/ar-condicionado/splits",
+            route: "/crud/ar-condicionado/splits",
             src: require("@/assets/ar-condicionado/splits.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
@@ -1511,7 +1511,7 @@ export default {
           }, 
           {
             name: "Selfs",
-            route: "/ar-condicionado/selfs",
+            route: "/crud/ar-condicionado/selfs",
             src: require("@/assets/ar-condicionado/selfs.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
@@ -1840,7 +1840,7 @@ export default {
         {tipo: "VRF", equipamentos: [
           {
             name: "Unidades Condensadoras",
-            route: "/ar-condicionado/vrfconds",
+            route: "/crud/ar-condicionado/vrfconds",
             src: require("@/assets/ar-condicionado/vrfs.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
@@ -2068,7 +2068,7 @@ export default {
           }, 
           {
             name: "Unidades Evaporadoras",
-            route: "/ar-condicionado/vrfevaps",
+            route: "/crud/ar-condicionado/vrfevaps",
             src: require("@/assets/ar-condicionado/vrfs.jpg"),
             documentDescription: [
               {"value": "_id", "text": "", active: false, sortable: false},
