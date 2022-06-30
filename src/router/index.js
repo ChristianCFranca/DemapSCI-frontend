@@ -79,6 +79,16 @@ const routes = [
     component: DocumentosEN
   },
   {
+    path: '/crud/energia/ctas',
+    name: 'ctas',
+    component: DocumentosEN
+  },
+  {
+    path: '/crud/energia/ups',
+    name: 'ups',
+    component: DocumentosEN
+  },
+  {
     path: '/incendio',
     name: 'incendio',
     component: Incendio
