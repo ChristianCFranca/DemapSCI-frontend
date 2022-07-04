@@ -1870,7 +1870,7 @@ export default {
                 dropItems: [],
                 dropRequest: true,
                 loading: false,
-                overrideRoute: '/ar-condicionado/vrfevaps/unique/tag',
+                overrideRoute: '/crud/ar-condicionado/vrfevaps/unique/tag',
                 rule: this.$store.getters.getCurrentRules['none'],
                 search: '',
                 filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
