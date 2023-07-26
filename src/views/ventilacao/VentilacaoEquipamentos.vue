@@ -5,7 +5,7 @@
         <div v-for="grupo in grupos" :key="grupo.tipo">
           <v-row justify="center">
 
-            <v-card hover v-for="equip in grupo.equipamentos" :key="equip.name" class="text-center ma-4" color="amber lighten-5">
+            <v-card hover v-for="equip in grupo.equipamentos" :key="equip.name" class="text-center ma-4" color="deep-orange lighten-5">
                 <v-img :src="equip.src ? equip.src : require(`@/assets/ar-condicionado/card-banner.jpg`)" max-width="250px" max-height="122px"></v-img>
                 <v-card-title class="justify-center"> {{ equip.name }} </v-card-title>
                 <v-card-subtitle> {{ grupo.tipo }} </v-card-subtitle>
