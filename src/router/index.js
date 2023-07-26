@@ -2,12 +2,13 @@ import Vue from 'vue'
 import store from '../store'
 import VueRouter from 'vue-router'
 import ArCondicionado from '../views/ar-condicionado/ArCondicionado.vue'
-import DocumentosAC from '../views/ar-condicionado/equipamentos/Documentos.vue'
-import DocumentosEN from '../views/energia/equipamentos/Documentos.vue'
 import Energia from '../views/energia/Energia.vue'
 import Ventilacao from '../views/ventilacao/Ventilacao.vue'
 import Manutencao from '../views/manutencao/Manutencao.vue'
 import Incendio from '../views/incendio/Incendio.vue'
+import DocumentosAC from '../views/ar-condicionado/equipamentos/Documentos.vue'
+import DocumentosEN from '../views/energia/equipamentos/Documentos.vue'
+import DocumentosVE from '../views/ventilacao/equipamentos/Documentos.vue'
 import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
@@ -94,9 +95,14 @@ const routes = [
     component: Incendio
   },
   {
-    path: '/ventilacao',
+    path: '/crud/ventilacao',
     name: 'ventilacao',
     component: Ventilacao
+  },
+  {
+    path: '/crud/ventilacao/ventiladores',
+    name: 'ventiladores',
+    component: DocumentosVE
   },
   {
     path: '/manutencao',
