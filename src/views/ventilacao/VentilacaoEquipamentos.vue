@@ -111,7 +111,7 @@ export default {
               {
                 value: "modelo", 
                 text: "Modelo", 
-                hint: "Exemplo: EC1/2-MN",
+                hint: "Exemplo: TDA-15/15-L",
                 active: true, 
                 sortable: true, 
                 required: false, 
@@ -192,23 +192,6 @@ export default {
                 required: false,
                 type: "dropdown",
                 dropItems: ['Centrífugo Sirocco', 'Centrífugo Limit Load', 'Axial', 'Radial'],
-                rule: this.$store.getters.getCurrentRules['none'],
-                search: '',
-                filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
-                  if (!this.search) return true;
-                  return String(value).toLowerCase().includes(this.search.toLowerCase())
-                }},
-              {
-                value: "modelo", 
-                text: "Modelo do Ventilador", 
-                hint: "Exemplo: TDA-15/15-L",
-                active: false, 
-                sortable: true, 
-                required: false,
-                type: "autocomplete", 
-                dropItems: [],
-                dropRequest: true,
-                loading: false,
                 rule: this.$store.getters.getCurrentRules['none'],
                 search: '',
                 filter: function(value) { // Cuidado ao usar a função arrow pois o this será atribuído ao global, e não a esse objeto
